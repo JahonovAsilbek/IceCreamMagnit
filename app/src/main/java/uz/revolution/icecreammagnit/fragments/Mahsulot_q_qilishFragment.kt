@@ -31,6 +31,8 @@ class Mahsulot_q_qilishFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
         }
+
+
 //        val database = AppDatabase.get.getDatabase()
 //        productDao=database.getProductDao()
     }
