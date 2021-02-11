@@ -2,14 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
     android:layout_height="match_parent"
-    tools:context=".fragments.MahsulotlarFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ReceivedProductFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/product_item"
         android:layout_width="match_parent"
-        android:id="@+id/product_recycler_view"
-        android:layout_height="match_parent"/>
+        android:id="@+id/received_rv"
+        tools:listitem="@layout/item_received"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="match_parent" />
 
 </FrameLayout>

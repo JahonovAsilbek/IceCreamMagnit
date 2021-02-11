@@ -2,42 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginTop="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardElevation="5dp"
-        android:foreground="?selectableItemBackground"
-        android:layout_marginTop="4dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:elevation="5dp"
+        android:foreground="?selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingTop="8dp"
+            android:layout_height="match_parent"
             android:paddingLeft="16dp"
+            android:paddingTop="8dp"
             android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:layout_height="match_parent">
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/item_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_marginTop="12dp"
                 android:text="Mahsulot nomi"
                 android:textColor="#000"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Qolgan:"
+                android:textColor="#555555"
                 android:textSize="10sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -56,26 +58,29 @@
                 android:layout_height="wrap_content"
                 android:text="80"
                 android:textColor="#000"
-                android:textStyle="bold"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_product_qolgan_text" />
+
             <TextView
                 android:id="@+id/item_product_narx"
-                android:layout_marginTop="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="12dp"
                 android:text="Narxi"
                 android:textColor="#000"
                 android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_product_name" />
+
             <TextView
                 android:id="@+id/item_product_karobkada_text"
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Karobkada soni:"
+                android:textColor="#555555"
                 android:textSize="10sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_product_qolgan_soni" />
@@ -85,23 +90,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="72x"
-                app:layout_constraintTop_toBottomOf="@id/item_product_karobkada_text"
                 android:textColor="#000"
-                android:textStyle="bold"
                 android:textSize="20sp"
-                app:layout_constraintRight_toRightOf="parent" />
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_product_karobkada_text" />
 
 
             <LinearLayout
+                android:id="@+id/item_product_mijoz_uchun_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/item_product_narx"
                 android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:id="@+id/item_product_mijoz_uchun_layout"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                app:layout_constraintTop_toBottomOf="@id/item_product_narx">
+
                 <TextView
                     android:id="@+id/item_product_mijoz_uchun_narx_text"
                     android:layout_width="wrap_content"
@@ -109,25 +115,28 @@
                     android:text="Mijozlar uchun narx:"
                     android:textColor="#000"
                     android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/item_product_mijoz_uchun_narx_soni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:text="1170so'm"
-                    android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/item_product_mijoz_uchun_layout"
-                app:layout_constraintLeft_toLeftOf="parent"
                 android:id="@+id/item_product_taminotchi_layout"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_product_mijoz_uchun_layout">
+
                 <TextView
                     android:id="@+id/item_product_taminotchi_text"
                     android:layout_width="wrap_content"
@@ -135,15 +144,16 @@
                     android:text="Ta'minotchi:"
                     android:textColor="#000"
                     android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/item_product_tamonotchi_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="Vazira MCHJ"
-                    android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
