@@ -11,10 +11,12 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@android:color/black"
+            app:title="Mahsulotlar"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" />
+            android:background="#01C3FF" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

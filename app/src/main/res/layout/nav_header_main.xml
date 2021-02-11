@@ -12,11 +12,18 @@
     android:paddingBottom="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <io.alterac.blurkit.BlurLayout
+        app:blk_blurRadius="10"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/magnit"
-        android:layout_marginTop="20dp" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/magnit" />
+
+    </io.alterac.blurkit.BlurLayout>
 
 </LinearLayout>
