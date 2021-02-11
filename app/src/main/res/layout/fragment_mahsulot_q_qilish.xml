@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".fragments.Mahsulot_q_qilishFragment">
+    tools:context=".mahsulot_qabul_qilish.Mahsulot_q_qilishFragment">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/received_vp"

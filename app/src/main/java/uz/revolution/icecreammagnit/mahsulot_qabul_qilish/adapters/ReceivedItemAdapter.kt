@@ -1,4 +1,4 @@
-package uz.revolution.icecreammagnit.adapters
+package uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_received.view.*
 import uz.revolution.icecreammagnit.R
-import uz.revolution.icecreammagnit.models.Product
 import uz.revolution.icecreammagnit.models.ReceivedProducts
 
 class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :

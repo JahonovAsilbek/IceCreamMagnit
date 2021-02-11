@@ -1,23 +1,15 @@
-package uz.revolution.icecreammagnit.fragments
+package uz.revolution.icecreammagnit.mahsulot_qabul_qilish
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_mahsulot_q_qilish.view.*
-import kotlinx.android.synthetic.main.fragment_mahsulotlar.view.*
 import kotlinx.android.synthetic.main.tab_item.view.*
 import uz.revolution.icecreammagnit.R
-import uz.revolution.icecreammagnit.adapters.ReceivedProductAdapter
-import uz.revolution.icecreammagnit.daos.MagnitDao
-import uz.revolution.icecreammagnit.database.AppDatabase
-import uz.revolution.icecreammagnit.models.Product
+import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.ReceivedProductAdapter
 import uz.revolution.icecreammagnit.models.ReceivedProducts
-import uz.revolution.icecreammagnit.models.Supplier
-import java.io.Serializable
 
 private const val ARG_PARAM1 = "param1"
 
@@ -38,7 +30,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
     }
 
     lateinit var root: View
-    lateinit var adapter:ReceivedProductAdapter
+    lateinit var adapter: ReceivedProductAdapter
     private var receivedList:ArrayList<ReceivedProducts>?=null
 
     override fun onCreateView(
@@ -75,6 +67,22 @@ class Mahsulot_q_qilishFragment : Fragment() {
         })
 
         return root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.received_products_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.show_suppliers) {
+
+        }
+
+        if (item.itemId == R.id.add_suplliers) {
+
+        }
+
+        return true
     }
 
     private fun setTabs() {

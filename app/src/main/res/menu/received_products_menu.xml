@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/show_suppliers"
+        android:icon="@android:drawable/checkbox_on_background"
+        android:title="Choose suppliers"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/add_suplliers"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Add suppliers"
+        app:showAsAction="never" />
+</menu>

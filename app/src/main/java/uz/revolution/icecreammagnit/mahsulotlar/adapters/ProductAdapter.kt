@@ -1,4 +1,4 @@
-package uz.revolution.icecreammagnit.adapters
+package uz.revolution.icecreammagnit.mahsulotlar.adapters
 
 import android.view.LayoutInflater
 import android.view.View

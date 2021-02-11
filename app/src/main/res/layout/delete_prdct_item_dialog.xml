@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="20dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:paddingBottom="20dp">
 
     <ImageView
         android:id="@+id/delete_product_item_warning"
@@ -47,10 +47,10 @@
         android:id="@+id/delete_product_dialog_davom_etish_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#555555"
         android:layout_marginBottom="25dp"
         android:background="@android:color/transparent"
         android:text="Davom etish"
+        android:textColor="#555555"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

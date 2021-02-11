@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/haydovchiFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.HaydovchiFragment"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.HaydovchiFragment"
         android:label="Haydovchilar"
         tools:layout="@layout/fragment_haydovchi" />
     <fragment
         android:id="@+id/magnitFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.MagnitFragment"
+        android:name="uz.revolution.icecreammagnit.magnit.MagnitFragment"
         android:label="Magnit market"
         tools:layout="@layout/fragment_magnit" />
     <fragment
         android:id="@+id/mijozlarFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.MijozlarFragment"
+        android:name="uz.revolution.icecreammagnit.mijozlar.MijozlarFragment"
         android:label="Mijozlar"
         tools:layout="@layout/fragment_mijozlar" />
     <fragment
         android:id="@+id/mahsulot_q_qilishFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.Mahsulot_q_qilishFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.Mahsulot_q_qilishFragment"
         android:label="Ta'minotchini tanlang"
         tools:layout="@layout/fragment_mahsulot_q_qilish" >
         <action
@@ -31,12 +31,12 @@
     </fragment>
     <fragment
         android:id="@+id/mahsulotlarFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.MahsulotlarFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulotlar.MahsulotlarFragment"
         android:label="Mahsulotlar"
         tools:layout="@layout/fragment_mahsulotlar" />
     <fragment
         android:id="@+id/receivedProductFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.ReceivedProductFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.ReceivedProductFragment"
         android:label="fragment_received_product"
         tools:layout="@layout/fragment_received_product" />
 </navigation>

@@ -1,10 +1,9 @@
-package uz.revolution.icecreammagnit.fragments
+package uz.revolution.icecreammagnit.mahsulotlar
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -12,10 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
-import kotlinx.android.synthetic.main.fragment_mahsulotlar.*
 import kotlinx.android.synthetic.main.fragment_mahsulotlar.view.*
 import uz.revolution.icecreammagnit.R
-import uz.revolution.icecreammagnit.adapters.ProductAdapter
+import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
 import uz.revolution.icecreammagnit.models.Product
 
 class MahsulotlarFragment : Fragment() {

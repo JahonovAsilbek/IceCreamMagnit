@@ -1,58 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="16dp"
-    android:layout_margin="15dp"
-    app:cardMaxElevation="12dp"
-    android:layout_height="wrap_content">
+    app:cardMaxElevation="12dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Sana: 11.02.2021"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/received_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="Olingan summa: 1 250 000"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/total_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="Berilgan summa: 1 250 000"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="Tovarlar: "
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 
