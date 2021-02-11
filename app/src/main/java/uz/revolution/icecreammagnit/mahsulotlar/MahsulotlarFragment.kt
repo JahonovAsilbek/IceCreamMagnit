@@ -1,11 +1,11 @@
-package uz.revolution.icecreammagnit.mahsulotlar
+package uz.revolution.icecreammagnit.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +13,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_mahsulotlar.view.*
 import uz.revolution.icecreammagnit.R
-import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
+import uz.revolution.icecreammagnit.adapters.ProductAdapter
+import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.models.Product
 
 class MahsulotlarFragment : Fragment() {
@@ -24,105 +25,23 @@ class MahsulotlarFragment : Fragment() {
 
     fun loadData() {
         productList = ArrayList()
-//        val database = AppDatabase.get.getDatabase()
-//        val getMagnitDao = database.getProductDao()
-//        productList= getMagnitDao?.getProductList()!!
-        (productList as ArrayList<Product>).add(
-            Product(
-                1,
-                1,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                1,
-                3,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                0,
-                4,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                2,
-                0,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                2,
-                2,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                1,
-                1,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                4,
-                3,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
-        (productList as ArrayList<Product>).add(
-            Product(
-                1,
-                2,
-                "Grand s sgushonka",
-                2500,
-                2700,
-                20,
-                30
-            )
-        )
+        val database = AppDatabase.get.getDatabase()
+        val getMagnitDao = database.getProductDao()
+        productList= getMagnitDao?.getProductList()!!
 
         productAdapter = ProductAdapter(productList)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         loadData()
         root = inflater.inflate(R.layout.fragment_mahsulotlar, container, false)
         root.product_recycler_view.adapter = productAdapter
@@ -191,5 +110,16 @@ class MahsulotlarFragment : Fragment() {
         }
         val itemTouchHelper = ItemTouchHelper(itemTouch)
         itemTouchHelper.attachToRecyclerView(root.product_recycler_view)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.add_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.add_product_menu) {
+            findNavController().navigate(R.id.addProductFragment)
+        }
+        return true
     }
 }

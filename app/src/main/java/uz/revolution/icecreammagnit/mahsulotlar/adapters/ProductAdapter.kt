@@ -22,8 +22,6 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
         fun BindView(product: Product) {
 
             list = getMagnitDao?.getAllSuppliers()!!
-
-
             itemView.item_product_name.text = product.name
             itemView.item_product_qolgan_soni.text = product.balance.toString()
             itemView.item_product_karobkada_soni.text = product.totalBox.toString() + "x"
