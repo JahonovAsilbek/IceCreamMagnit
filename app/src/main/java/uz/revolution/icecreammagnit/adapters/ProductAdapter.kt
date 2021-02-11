@@ -11,11 +11,13 @@ import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.models.Product
 import uz.revolution.icecreammagnit.models.Supplier
 
-class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<ProductAdapter.Vh>(),SwipeProduct {
+class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<ProductAdapter.Vh>(),
+    SwipeProduct {
     var chek = true
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
-    lateinit var list:List<Supplier>
+    lateinit var list: List<Supplier>
+
     inner class Vh(itemview: View) : RecyclerView.ViewHolder(itemview) {
         fun BindView(product: Product) {
 
@@ -24,9 +26,9 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
 
             itemView.item_product_name.text = product.name
             itemView.item_product_qolgan_soni.text = product.balance.toString()
-            itemView.item_product_karobkada_soni.text = product.totalBox.toString()
+            itemView.item_product_karobkada_soni.text = product.totalBox.toString() + "x"
             itemView.item_product_mijoz_uchun_narx_soni.text =
-                product.costCustomer.toString() + "so'm"
+                product.costCustomer.toString() + " so'm"
             itemView.item_product_narx.text = "Narx:   " + product.costDriver.toString() + "so'm"
             itemView.item_product_tamonotchi_name.text = TaminotchiniTop(product.supplierID)
 
@@ -52,11 +54,12 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
                 true
             })
         }
+
         fun TaminotchiniTop(id: Int): String {
             var str = ""
             for (i in 0 until list.size) {
                 if (list[i].supplierID == id) {
-                    str=list[i].name
+                    str = list[i].name
                 }
             }
             return str

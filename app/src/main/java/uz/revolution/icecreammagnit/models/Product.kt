@@ -3,6 +3,7 @@ package uz.revolution.icecreammagnit.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "products")
 data class Product(
@@ -21,4 +22,4 @@ data class Product(
 
     @ColumnInfo(name = "balance") val balance: Int
 
-)
+):Serializable
