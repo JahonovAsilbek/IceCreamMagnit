@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/haydovchiFragment"
+            android:icon="@drawable/ic_baseline_group_24"
+            android:title="Haydovchilar" />
+        <item
+            android:id="@+id/magnitFragment"
+            android:icon="@drawable/ic_home_24"
+
+            android:title="Magnit" />
+        <item
+            android:id="@+id/mijozlarFragment"
+            android:icon="@drawable/ic_baseline_swap_horizontal_circle_24"
+            android:title="Mijozlar" />
+        <item
+            android:id="@+id/mahsulot_q_qilishFragment"
+            android:icon="@drawable/ic_baseline_add_24"
+            android:title="Mahsulot qabul qilish" />
+        <item
+            android:id="@+id/mahsulotlarFragment"
+            android:icon="@drawable/ic_baseline_cloud_circle_24"
+            android:title="Mahsulotlar" />
+    </group>
+</menu>
