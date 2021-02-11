@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_mahsulotlar.*
 import kotlinx.android.synthetic.main.fragment_mahsulotlar.view.*
 import uz.revolution.icecreammagnit.R
@@ -137,10 +140,9 @@ class MahsulotlarFragment : Fragment() {
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
             ): Int {
-                val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
                 val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
 
-                return makeMovementFlags(dragFlags, swipeFlags)
+                return makeMovementFlags(0,swipeFlags)
             }
 
             override fun onMove(
@@ -152,20 +154,42 @@ class MahsulotlarFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val pd=viewHolder.adapterPosition
-                val product=productList[pd]
-                productAdapter.onSwipe(pd)
-                Snackbar.make(root,"Mahsulot o'chirildi!",Snackbar.LENGTH_LONG).setAction("Bekor qilish",
-                    object : View.OnClickListener {
-                        override fun onClick(v: View?) {
-                            (productList as ArrayList).add(pd, product)
-                            productAdapter.notifyItemInserted(pd)
-                            productAdapter.notifyItemRangeChanged(pd,productList.size)
-                        }
+                val view = layoutInflater.inflate(R.layout.delete_prdct_item_dialog, null, false)
+                val alertdialog = AlertDialog.Builder(root.context)
+                val dialog = alertdialog.create()
+                dialog.setView(view)
 
-                    }).show()
+                view.delete_product_dialog_davom_etish_.setOnClickListener{
+                    val pd = viewHolder.adapterPosition
+                    val product = productList[pd]
+                    productAdapter.onSwipe(pd)
+                    dialog.dismiss()
+                    Snackbar.make(root,"Mahsulot o'chirildi!",Snackbar.LENGTH_LONG).setAction("Bekor qilish",
+                        object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                (productList as ArrayList).add(pd, product)
+                                productAdapter.notifyItemInserted(pd)
+                                productAdapter.notifyItemRangeChanged(pd,productList.size)
+                            }
+
+                        }).show()
+                }
+                view.delete_product_dialog_bekor_qilish.setOnClickListener{
+                    dialog.dismiss()
+                    val pd = viewHolder.adapterPosition
+                    val product = productList[pd]
+                    productAdapter.onSwipe(pd)
+                    (productList as ArrayList).add(pd, product)
+                    productAdapter.notifyItemInserted(pd)
+                    productAdapter.notifyItemRangeChanged(pd,productList.size)
+                    dialog.dismiss()
+                }
+                dialog.show()
+
+
+
+
             }
-
         }
         val itemTouchHelper = ItemTouchHelper(itemTouch)
         itemTouchHelper.attachToRecyclerView(root.product_recycler_view)

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/delete_product_item_warning"
+        android:src="@drawable/warning"
+        android:padding="30dp"
+        android:layout_margin="40dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/delete_product_item_text"
+        app:layout_constraintTop_toBottomOf="@id/delete_product_item_warning"
+        android:textColor="#000"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Chindan ham ushbu mahsulotni o'chirib tashlamoqchimisiz?\n\nDiqqat! Keyinchalik siz bu mahsulotdan foydalana olmaysiz!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_product_item_text"
+        android:id="@+id/delete_product_dialog_bekor_qilish"
+        android:textSize="24sp"
+        android:backgroundTint="#03A9F4"
+        android:textColor="#000"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Bekor qilish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        app:layout_constraintRight_toRightOf="parent"
+       android:textSize="16sp"
+        android:background="@android:color/transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_product_dialog_bekor_qilish"
+        android:id="@+id/delete_product_dialog_davom_etish_"
+        android:layout_marginBottom="16dp"
+        android:text="Davom etish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
