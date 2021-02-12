@@ -14,12 +14,11 @@ import uz.revolution.icecreammagnit.mahsulotlar.EditProductFragment
 import uz.revolution.icecreammagnit.models.Product
 import uz.revolution.icecreammagnit.models.Supplier
 
-class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<ProductAdapter.Vh>(),
+class ProductAdapter(var productList: List<Product>,var supplierList:List<Supplier>) : RecyclerView.Adapter<ProductAdapter.Vh>(),
     SwipeProduct {
     var chek = true
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
-    lateinit var supplierList: ArrayList<Supplier>
 
     inner class Vh(itemview: View) : RecyclerView.ViewHolder(itemview) {
         fun BindView(product: Product) {

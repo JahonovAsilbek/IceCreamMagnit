@@ -1,6 +1,7 @@
 package uz.revolution.icecreammagnit.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -15,12 +16,14 @@ import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
 import uz.revolution.icecreammagnit.models.Product
+import uz.revolution.icecreammagnit.models.Supplier
 
 class MahsulotlarFragment : Fragment() {
 
     lateinit var root: View
     lateinit var productAdapter: ProductAdapter
     lateinit var productList: List<Product>
+    lateinit var suppliertList: List<Supplier>
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
 
@@ -28,8 +31,9 @@ class MahsulotlarFragment : Fragment() {
         productList = ArrayList()
 
         productList = getMagnitDao?.getProductList()!!
+        suppliertList=getMagnitDao.getAllSuppliers()
 
-        productAdapter = ProductAdapter(productList)
+        productAdapter = ProductAdapter(productList, suppliertList)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
