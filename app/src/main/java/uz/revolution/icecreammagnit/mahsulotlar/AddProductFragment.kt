@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_add_product.view.*
+import kotlinx.android.synthetic.main.add_product.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.models.Product
@@ -20,7 +20,7 @@ class AddProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_add_product, container, false)
+        root = inflater.inflate(R.layout.add_product, container, false)
 
         root.add_product_ok.setOnClickListener { v ->
             var productName = root.add_product_mahsulot_nomi.text.toString().trim()
@@ -28,14 +28,14 @@ class AddProductFragment : Fragment() {
             var productMijozCost = root.add_product_mahsulot_mijoz_uchun_narx.text.toString().trim()
             var qolgan_astatka = root.add_product_mahsulot_astakasi.text.toString().trim()
             var karobkada_soni = root.add_product_mahsulot_karobkada_soni.text.toString().trim()
-            var taminotchi=root.add_product_spinner.selectedItem.toString()
+            var taminotchi = root.add_product_spinner.selectedItem.toString()
             if (productName != "" && productDrCost != "" && productMijozCost != "" && qolgan_astatka != "" && karobkada_soni != "") {
                 val database = AppDatabase.get.getDatabase()
                 val getMagnitDao = database.getProductDao()
 
                 getMagnitDao?.insertProduct(
                     Product(
-                        getMagnitDao.getProductList().size+1,
+                        getMagnitDao.getProductList().size + 1,
                         2,
                         //qilinadigan ishi bor
                         productName,
@@ -48,7 +48,11 @@ class AddProductFragment : Fragment() {
                 )
                 findNavController().popBackStack()
                 container?.let {
-                    Snackbar.make(it.getChildAt(0), "Mahsulot muvaffaqiyatli qo'shildi", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        it.getChildAt(0),
+                        "Mahsulot muvaffaqiyatli qo'shildi",
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                 }
             } else {

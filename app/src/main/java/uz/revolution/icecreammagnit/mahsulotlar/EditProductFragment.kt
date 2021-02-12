@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_add_product.view.*
-import kotlinx.android.synthetic.main.fragment_edit_product.view.*
+import kotlinx.android.synthetic.main.edit_product.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.models.Product
@@ -18,7 +17,7 @@ private const val ARG_PARAM1 = "param1"
 class EditProductFragment : Fragment() {
     private var product: Product? = null
 
-    lateinit var root:View
+    lateinit var root: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -31,7 +30,7 @@ class EditProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_edit_product, container, false)
+        root = inflater.inflate(R.layout.edit_product, container, false)
 
         root.edit_product_mahsulot_nomi.setText(product?.name)
         root.edit_product_mahsulot_narxi.setText(product?.costDriver.toString())
@@ -42,7 +41,8 @@ class EditProductFragment : Fragment() {
         root.edit_product_ok.setOnClickListener {
             var productName = root.edit_product_mahsulot_nomi.text.toString().trim()
             var productDrCost = root.edit_product_mahsulot_narxi.text.toString().trim()
-            var productMijozCost = root.edit_product_mahsulot_mijoz_uchun_narx.text.toString().trim()
+            var productMijozCost =
+                root.edit_product_mahsulot_mijoz_uchun_narx.text.toString().trim()
             var qolgan_astatka = root.edit_product_mahsulot_astakasi.text.toString().trim()
             var karobkada_soni = root.edit_product_mahsulot_karobkada_soni.text.toString().trim()
             if (productName != "" && productDrCost != "" && productMijozCost != "" && qolgan_astatka != "" && karobkada_soni != "") {
@@ -50,17 +50,21 @@ class EditProductFragment : Fragment() {
                 val getMagnitDao = database.getProductDao()
 
                 getMagnitDao?.updateProduct(
-                        product?.supplierID!!,
-                        productName,
-                        Integer.parseInt(productMijozCost),
-                        Integer.parseInt(productDrCost),
-                        Integer.parseInt(karobkada_soni),
-                        Integer.parseInt(qolgan_astatka),
+                    product?.supplierID!!,
+                    productName,
+                    Integer.parseInt(productMijozCost),
+                    Integer.parseInt(productDrCost),
+                    Integer.parseInt(karobkada_soni),
+                    Integer.parseInt(qolgan_astatka),
                     product?.id!!
                 )
                 findNavController().popBackStack()
                 container?.let {
-                    Snackbar.make(it.getChildAt(0), "Mahsulot muvaffaqiyatli tahrirlandi", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        it.getChildAt(0),
+                        "Mahsulot muvaffaqiyatli tahrirlandi",
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                 }
             } else {
@@ -80,7 +84,7 @@ class EditProductFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        return  root
+        return root
     }
 
     companion object {

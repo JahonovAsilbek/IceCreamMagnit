@@ -9,22 +9,26 @@
         android:id="@+id/haydovchiFragment"
         android:name="uz.revolution.icecreammagnit.haydovchilar.HaydovchiFragment"
         android:label="Haydovchilar"
-        tools:layout="@layout/fragment_haydovchi" />
+        tools:layout="@layout/haydovchi" />
     <fragment
         android:id="@+id/magnitFragment"
         android:name="uz.revolution.icecreammagnit.magnit.MagnitFragment"
         android:label="Magnit market"
-        tools:layout="@layout/fragment_magnit" />
+        tools:layout="@layout/magnit" />
     <fragment
         android:id="@+id/mijozlarFragment"
         android:name="uz.revolution.icecreammagnit.mijozlar.MijozlarFragment"
         android:label="Mijozlar"
-        tools:layout="@layout/fragment_mijozlar" />
+        tools:layout="@layout/mijozlar" />
     <fragment
         android:id="@+id/mahsulot_q_qilishFragment"
         android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.Mahsulot_q_qilishFragment"
-        android:label="Ta'minotchini tanlang"
-        tools:layout="@layout/fragment_mahsulot_q_qilish" />
+        android:label="Yaqinda qabul qilingan"
+        tools:layout="@layout/mahsulot_q_qilish" >
+        <action
+            android:id="@+id/action_mahsulot_q_qilishFragment_to_receivedProductFragment"
+            app:destination="@id/receivedProductFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mahsulotlarFragment"
         android:name="uz.revolution.icecreammagnit.fragments.MahsulotlarFragment"
@@ -40,10 +44,42 @@
         android:id="@+id/addProductFragment"
         android:name="uz.revolution.icecreammagnit.mahsulotlar.AddProductFragment"
         android:label="Yangi mahsulot qo'shish"
-        tools:layout="@layout/fragment_add_product" />
+        tools:layout="@layout/add_product" />
     <fragment
         android:id="@+id/editProductFragment"
         android:name="uz.revolution.icecreammagnit.mahsulotlar.EditProductFragment"
         android:label="Mahsulotni tahrirlash"
-        tools:layout="@layout/fragment_edit_product" />
+        tools:layout="@layout/edit_product" />
+    <fragment
+        android:id="@+id/receivedProductFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.ReceivedProductFragment"
+        android:label="Yaqinda qabul qilingan"
+        tools:layout="@layout/received_product" >
+        <action
+            android:id="@+id/action_receivedProductFragment_to_chooseSupplier"
+            app:destination="@id/chooseSupplier" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseSupplier"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.ChooseSupplier"
+        android:label="Ta'minotchini tanlang"
+        tools:layout="@layout/choose_supplier" >
+        <action
+            android:id="@+id/action_chooseSupplier_to_setCostToSupplierProduct"
+            app:destination="@id/setCostToSupplierProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/setCostToSupplierProduct"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.UpdateProductBalanceFragment"
+        android:label="Supplier nomi"
+        tools:layout="@layout/update_balance" >
+        <action
+            android:id="@+id/action_setCostToSupplierProduct_to_updateBalanceDialog"
+            app:destination="@id/updateBalanceDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateBalanceDialog"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.dialogs.UpdateBalanceDialog"
+        android:label="fragment_update_balance_dialog"
+        tools:layout="@layout/update_balance_dialog" />
 </navigation>

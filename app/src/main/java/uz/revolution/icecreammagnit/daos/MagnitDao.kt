@@ -31,6 +31,9 @@ interface MagnitDao {
         id: Int
     )
 
+    @Query("UPDATE products SET balance=:balance+balance WHERE id=:id")
+    fun addBalance(balance: Int,id: Int)
+
     @Delete
     fun deleteProduct(product: Product)
 
@@ -142,6 +145,9 @@ interface MagnitDao {
 
     @Query("UPDATE supplier SET name=:name WHERE supplierID=:supplierID")
     fun updateSupplier(name: String, supplierID: Int)
+
+    @Query("SELECT * FROM supplier WHERE supplierID=:id")
+    fun getSupplierByID(id: Int):Supplier
 
     /*
     *

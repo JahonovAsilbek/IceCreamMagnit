@@ -4,12 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.fragment_mahsulot_q_qilish.view.*
+import kotlinx.android.synthetic.main.mahsulot_q_qilish.view.*
 import kotlinx.android.synthetic.main.tab_item.view.*
 import uz.revolution.icecreammagnit.R
+import uz.revolution.icecreammagnit.daos.MagnitDao
+import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.ReceivedProductAdapter
 import uz.revolution.icecreammagnit.models.ReceivedProducts
+import uz.revolution.icecreammagnit.models.Supplier
 
 private const val ARG_PARAM1 = "param1"
 
@@ -23,25 +27,26 @@ class Mahsulot_q_qilishFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
         }
-
-
-//        val database = AppDatabase.get.getDatabase()
-//        productDao=database.getProductDao()
+        setHasOptionsMenu(true)
+        database = AppDatabase.get.getDatabase()
+        productDao= database!!.getProductDao()
     }
 
     lateinit var root: View
     lateinit var adapter: ReceivedProductAdapter
-    private var receivedList:ArrayList<ReceivedProducts>?=null
+    private var receivedList: ArrayList<ReceivedProducts>? = null
+    var database:AppDatabase?=null
+    var productDao:MagnitDao?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        root = inflater.inflate(R.layout.fragment_mahsulot_q_qilish, container, false)
+        root = inflater.inflate(R.layout.mahsulot_q_qilish, container, false)
 
         loadData()
-        adapter= ReceivedProductAdapter(receivedList!!,childFragmentManager)
-        root.received_vp.adapter=adapter
+        adapter = ReceivedProductAdapter(receivedList!!, childFragmentManager)
+        root.received_vp.adapter = adapter
         root.received_tab_layout.setupWithViewPager(root.received_vp)
 
         setTabs()
@@ -70,17 +75,14 @@ class Mahsulot_q_qilishFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.received_products_menu,menu)
+        inflater.inflate(R.menu.received_products_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.show_suppliers) {
-
+            findNavController().navigate(R.id.chooseSupplier)
         }
 
-        if (item.itemId == R.id.add_suplliers) {
-
-        }
 
         return true
     }
@@ -105,15 +107,11 @@ class Mahsulot_q_qilishFragment : Fragment() {
     }
 
     private fun loadData() {
-        receivedList=ArrayList<ReceivedProducts>()
-//        receivedList=productDao?.getAllReceivedProducts() as ArrayList
-
-        receivedList?.add(ReceivedProducts(0,0,"11.02.2021","Maro'jni",25,2500000,2000000))
-        receivedList?.add(ReceivedProducts(1,1,"11.02.2021","Maro'jni",25,2500000,2000000))
-        receivedList?.add(ReceivedProducts(2,2,"11.02.2021","Maro'jni",25,2500000,2000000))
-        receivedList?.add(ReceivedProducts(3,3,"11.02.2021","Maro'jni",25,2500000,2000000))
-        receivedList?.add(ReceivedProducts(4,4,"11.02.2021","Maro'jni",25,2500000,2000000))
-        receivedList?.add(ReceivedProducts(5,5,"11.02.2021","Maro'jni",25,2500000,2000000))
+        receivedList = ArrayList<ReceivedProducts>()
+        productDao?.insertSupplier(Supplier(2,"Vazira MCHJ"))
+        productDao?.insertSupplier(Supplier(1,"Royal Muz MCHJ"))
+//        productDao?.insertReceivedProducts(ReceivedProducts())
+        receivedList=productDao?.getAllReceivedProducts() as ArrayList
 
     }
 

@@ -35,7 +35,7 @@ class MijozlarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mijozlar, container, false)
+        return inflater.inflate(R.layout.mijozlar, container, false)
     }
 
     companion object {

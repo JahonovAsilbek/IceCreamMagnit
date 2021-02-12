@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".mahsulotlar.AddProductFragment">
 
     <ScrollView
@@ -31,6 +32,7 @@
                     app:boxStrokeColor="#03A9F4"
                     app:helperTextTextColor="#03A9F4"
                     app:errorEnabled="true"
+                    android:textColorHint="@android:color/black"
                     app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:hint="Mahsulot nomi"
@@ -53,6 +55,7 @@
                     app:boxStrokeColor="#03A9F4"
                     app:helperTextTextColor="#03A9F4"
                     app:errorEnabled="true"
+                    android:textColorHint="@android:color/black"
                     app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:hint="Mahsulot narxi"
@@ -76,6 +79,7 @@
                     app:boxStrokeColor="#03A9F4"
                     app:helperTextTextColor="#03A9F4"
                     app:errorEnabled="true"
+                    android:textColorHint="@android:color/black"
                     app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:hint="Mijoz uchun narx"
@@ -99,6 +103,7 @@
                     app:boxStrokeColor="#03A9F4"
                     app:helperTextTextColor="#03A9F4"
                     app:errorEnabled="true"
+                    android:textColorHint="@android:color/black"
                     app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:hint="Qolgan miqdor"
@@ -122,6 +127,7 @@
                     app:boxStrokeColor="#03A9F4"
                     app:helperTextTextColor="#03A9F4"
                     app:errorEnabled="true"
+                    android:textColorHint="@android:color/black"
                     app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:hint="Karobkada soni"

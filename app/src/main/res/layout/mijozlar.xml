@@ -2,9 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/background"
     android:layout_height="match_parent"
-    tools:context=".haydovchilar.HaydovchiFragment">
+    tools:context=".mijozlar.MijozlarFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

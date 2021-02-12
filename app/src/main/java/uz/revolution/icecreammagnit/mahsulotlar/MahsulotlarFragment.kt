@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
-import kotlinx.android.synthetic.main.fragment_mahsulotlar.view.*
+import kotlinx.android.synthetic.main.mahsulotlar.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
@@ -43,7 +43,7 @@ class MahsulotlarFragment : Fragment() {
     ): View {
 
         loadData()
-        root = inflater.inflate(R.layout.fragment_mahsulotlar, container, false)
+        root = inflater.inflate(R.layout.mahsulotlar, container, false)
         root.product_recycler_view.adapter = productAdapter
         root.product_recycler_view.layoutManager = LinearLayoutManager(container?.context)
         loadSwipeFun()
