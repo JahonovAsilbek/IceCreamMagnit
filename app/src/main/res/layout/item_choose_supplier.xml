@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="15dp"
+    android:layout_margin="12dp"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
     app:cardBackgroundColor="@android:color/white"
@@ -21,13 +21,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/choose_supplier_tv"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Qovunchi MCHJ"
             android:textColor="@android:color/black"
-            android:textSize="28sp" />
+            android:textSize="24sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
