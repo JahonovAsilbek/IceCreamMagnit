@@ -33,7 +33,7 @@ class AddProductFragment : Fragment() {
                 val database = AppDatabase.get.getDatabase()
                 val getMagnitDao = database.getProductDao()
 
-                getMagnitDao?.insertProduct(
+                var msg =getMagnitDao?.insertProduct(
                     Product(
                         getMagnitDao.getProductList().size + 1,
                         2,
@@ -46,15 +46,15 @@ class AddProductFragment : Fragment() {
 
                     )
                 )
-                findNavController().popBackStack()
-                container?.let {
-                    Snackbar.make(
-                        it.getChildAt(0),
-                        "Mahsulot muvaffaqiyatli qo'shildi",
-                        Snackbar.LENGTH_SHORT
-                    )
-                        .show()
-                }
+                    findNavController().popBackStack()
+                    container?.let {
+                        Snackbar.make(
+                            it.getChildAt(0),
+                            "Mahsulot muvaffaqiyatli qo'shildi",
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .show()
+                    }
             } else {
                 container?.getChildAt(0)?.let {
                     Snackbar.make(it, "Barcha maydonlarni to'ldiring!", Snackbar.LENGTH_LONG)
