@@ -21,14 +21,15 @@ class MahsulotlarFragment : Fragment() {
     lateinit var root: View
     lateinit var productAdapter: ProductAdapter
     lateinit var productList: List<Product>
+    val database = AppDatabase.get.getDatabase()
+    val getMagnitDao = database.getProductDao()
 
     fun loadData() {
         productList = ArrayList()
-//        val database = AppDatabase.get.getDatabase()
-//        val getMagnitDao = database.getProductDao()
-//        productList= getMagnitDao?.getProductList()!!
 
-        productAdapter = ProductAdapter(productList)
+        productList= getMagnitDao?.getProductList()!!
+
+         productAdapter = ProductAdapter(productList)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class MahsulotlarFragment : Fragment() {
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
             ): Int {
-                val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
+                val swipeFlags = ItemTouchHelper.START
 
                 return makeMovementFlags(0,swipeFlags)
             }
@@ -79,11 +80,13 @@ class MahsulotlarFragment : Fragment() {
                     val pd = viewHolder.adapterPosition
                     val product = productList[pd]
                     productAdapter.onSwipe(pd)
+                    getMagnitDao?.deleteProduct(product)
                     dialog.dismiss()
                     Snackbar.make(root,"Mahsulot o'chirildi!",Snackbar.LENGTH_LONG).setAction("Bekor qilish",
                         object : View.OnClickListener {
                             override fun onClick(v: View?) {
-                                (productList as ArrayList).add(pd, product)
+                                getMagnitDao?.insertProduct(product)
+                                (productList as ArrayList).add(pd,product)
                                 productAdapter.notifyItemInserted(pd)
                                 productAdapter.notifyItemRangeChanged(pd,productList.size)
                             }
@@ -121,4 +124,11 @@ class MahsulotlarFragment : Fragment() {
         }
         return true
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//        productList = getMagnitDao?.getProductList()!!
+//
+//        loadSwipeFun()
+//    }
 }

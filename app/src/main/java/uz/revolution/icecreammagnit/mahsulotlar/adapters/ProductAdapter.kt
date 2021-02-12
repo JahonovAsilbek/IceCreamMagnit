@@ -78,5 +78,6 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
     override fun onSwipe(fromPosition: Int) {
         (productList as ArrayList).removeAt(fromPosition)
         notifyItemRemoved(fromPosition)
+        notifyItemRangeChanged(fromPosition,productList.size)
     }
 }
