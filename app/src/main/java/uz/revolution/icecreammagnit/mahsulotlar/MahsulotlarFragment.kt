@@ -27,9 +27,9 @@ class MahsulotlarFragment : Fragment() {
     fun loadData() {
         productList = ArrayList()
 
-        productList= getMagnitDao?.getProductList()!!
+        productList = getMagnitDao?.getProductList()!!
 
-         productAdapter = ProductAdapter(productList)
+        productAdapter = ProductAdapter(productList)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,7 @@ class MahsulotlarFragment : Fragment() {
             ): Int {
                 val swipeFlags = ItemTouchHelper.START
 
-                return makeMovementFlags(0,swipeFlags)
+                return makeMovementFlags(0, swipeFlags)
             }
 
             override fun onMove(
@@ -76,36 +76,35 @@ class MahsulotlarFragment : Fragment() {
                 val dialog = alertdialog.create()
                 dialog.setView(view)
 
-                view.delete_product_dialog_davom_etish_.setOnClickListener{
+                view.delete_product_dialog_davom_etish_.setOnClickListener {
                     val pd = viewHolder.adapterPosition
                     val product = productList[pd]
                     productAdapter.onSwipe(pd)
                     getMagnitDao?.deleteProduct(product)
                     dialog.dismiss()
-                    Snackbar.make(root,"Mahsulot o'chirildi!",Snackbar.LENGTH_LONG).setAction("Bekor qilish",
-                        object : View.OnClickListener {
-                            override fun onClick(v: View?) {
-                                getMagnitDao?.insertProduct(product)
-                                (productList as ArrayList).add(pd,product)
-                                productAdapter.notifyItemInserted(pd)
-                                productAdapter.notifyItemRangeChanged(pd,productList.size)
-                            }
+                    Snackbar.make(root, "Mahsulot o'chirildi!", Snackbar.LENGTH_LONG)
+                        .setAction("Bekor qilish",
+                            object : View.OnClickListener {
+                                override fun onClick(v: View?) {
+                                    getMagnitDao?.insertProduct(product)
+                                    (productList as ArrayList).add(pd, product)
+                                    productAdapter.notifyItemInserted(pd)
+                                    productAdapter.notifyItemRangeChanged(pd, productList.size)
+                                }
 
-                        }).show()
+                            }).show()
                 }
-                view.delete_product_dialog_bekor_qilish.setOnClickListener{
+                view.delete_product_dialog_bekor_qilish.setOnClickListener {
                     dialog.dismiss()
                     val pd = viewHolder.adapterPosition
                     val product = productList[pd]
                     productAdapter.onSwipe(pd)
                     (productList as ArrayList).add(pd, product)
                     productAdapter.notifyItemInserted(pd)
-                    productAdapter.notifyItemRangeChanged(pd,productList.size)
+                    productAdapter.notifyItemRangeChanged(pd, productList.size)
                     dialog.dismiss()
                 }
                 dialog.show()
-
-
 
 
             }
@@ -115,7 +114,7 @@ class MahsulotlarFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_menu,menu)
+        inflater.inflate(R.menu.add_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -125,10 +124,5 @@ class MahsulotlarFragment : Fragment() {
         return true
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        productList = getMagnitDao?.getProductList()!!
-//
-//        loadSwipeFun()
-//    }
+
 }

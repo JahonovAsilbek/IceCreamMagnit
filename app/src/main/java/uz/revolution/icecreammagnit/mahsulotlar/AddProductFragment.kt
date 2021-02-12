@@ -28,13 +28,14 @@ class AddProductFragment : Fragment() {
             var productMijozCost = root.add_product_mahsulot_mijoz_uchun_narx.text.toString().trim()
             var qolgan_astatka = root.add_product_mahsulot_astakasi.text.toString().trim()
             var karobkada_soni = root.add_product_mahsulot_karobkada_soni.text.toString().trim()
+            var taminotchi=root.add_product_spinner.selectedItem.toString()
             if (productName != "" && productDrCost != "" && productMijozCost != "" && qolgan_astatka != "" && karobkada_soni != "") {
                 val database = AppDatabase.get.getDatabase()
                 val getMagnitDao = database.getProductDao()
 
                 getMagnitDao?.insertProduct(
                     Product(
-                        1,
+                        getMagnitDao.getProductList().size+1,
                         2,
                         productName,
                         Integer.parseInt(productMijozCost),

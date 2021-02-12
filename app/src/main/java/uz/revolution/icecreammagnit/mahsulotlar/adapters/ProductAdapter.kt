@@ -1,13 +1,16 @@
 package uz.revolution.icecreammagnit.mahsulotlar.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.product_item.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
+import uz.revolution.icecreammagnit.mahsulotlar.EditProductFragment
 import uz.revolution.icecreammagnit.models.Product
 import uz.revolution.icecreammagnit.models.Supplier
 
@@ -30,7 +33,7 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
             itemView.item_product_narx.text = "Narx:   " + product.costDriver.toString() + "so'm"
             itemView.item_product_tamonotchi_name.text = TaminotchiniTop(product.supplierID)
 
-            itemView.setOnLongClickListener(View.OnLongClickListener {
+            itemView.setOnClickListener(View.OnClickListener {
                 if (chek) {
                     itemView.item_product_mijoz_uchun_layout.visibility = View.VISIBLE
                     val mymijozanim_ochil =
@@ -50,6 +53,15 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
                 }
 
                 true
+            })
+
+            itemView.setOnLongClickListener(object : View.OnLongClickListener {
+                override fun onLongClick(v: View?): Boolean {
+                    var bundle = Bundle()
+                    bundle.putSerializable("param1",product)
+                    itemView.findNavController().navigate(R.id.editProductFragment,bundle)
+                    return true
+                }
             })
         }
 

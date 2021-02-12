@@ -120,10 +120,10 @@
                     android:id="@+id/item_product_mijoz_uchun_narx_soni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="30dp"
                     android:text="1170so'm"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 

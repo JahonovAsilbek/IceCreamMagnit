@@ -32,10 +32,18 @@
         <action
             android:id="@+id/action_mahsulotlarFragment_to_addProductFragment"
             app:destination="@id/addProductFragment" />
+        <action
+            android:id="@+id/action_mahsulotlarFragment_to_editProductFragment"
+            app:destination="@id/editProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
         android:name="uz.revolution.icecreammagnit.mahsulotlar.AddProductFragment"
         android:label="Yangi mahsulot qo'shish"
         tools:layout="@layout/fragment_add_product" />
+    <fragment
+        android:id="@+id/editProductFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulotlar.EditProductFragment"
+        android:label="Mahsulotni tahrirlash"
+        tools:layout="@layout/fragment_edit_product" />
 </navigation>
