@@ -2,7 +2,6 @@ package uz.revolution.icecreammagnit.fragments
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,8 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_mahsulotlar.view.*
 import uz.revolution.icecreammagnit.R
-import uz.revolution.icecreammagnit.adapters.ProductAdapter
 import uz.revolution.icecreammagnit.database.AppDatabase
+import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
 import uz.revolution.icecreammagnit.models.Product
 
 class MahsulotlarFragment : Fragment() {
@@ -25,9 +24,9 @@ class MahsulotlarFragment : Fragment() {
 
     fun loadData() {
         productList = ArrayList()
-        val database = AppDatabase.get.getDatabase()
-        val getMagnitDao = database.getProductDao()
-        productList= getMagnitDao?.getProductList()!!
+//        val database = AppDatabase.get.getDatabase()
+//        val getMagnitDao = database.getProductDao()
+//        productList= getMagnitDao?.getProductList()!!
 
         productAdapter = ProductAdapter(productList)
     }

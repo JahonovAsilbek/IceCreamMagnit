@@ -7,36 +7,35 @@
 
     <fragment
         android:id="@+id/haydovchiFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.HaydovchiFragment"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.HaydovchiFragment"
         android:label="Haydovchilar"
         tools:layout="@layout/fragment_haydovchi" />
     <fragment
         android:id="@+id/magnitFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.MagnitFragment"
+        android:name="uz.revolution.icecreammagnit.magnit.MagnitFragment"
         android:label="Magnit market"
         tools:layout="@layout/fragment_magnit" />
     <fragment
         android:id="@+id/mijozlarFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.MijozlarFragment"
+        android:name="uz.revolution.icecreammagnit.mijozlar.MijozlarFragment"
         android:label="Mijozlar"
         tools:layout="@layout/fragment_mijozlar" />
     <fragment
         android:id="@+id/mahsulot_q_qilishFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.Mahsulot_q_qilishFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.Mahsulot_q_qilishFragment"
         android:label="Ta'minotchini tanlang"
         tools:layout="@layout/fragment_mahsulot_q_qilish" />
     <fragment
         android:id="@+id/mahsulotlarFragment"
         android:name="uz.revolution.icecreammagnit.fragments.MahsulotlarFragment"
-        android:label="Mahsulotlar"
-        tools:layout="@layout/fragment_mahsulotlar" >
+        android:label="Mahsulotlar">
         <action
             android:id="@+id/action_mahsulotlarFragment_to_addProductFragment"
             app:destination="@id/addProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
-        android:name="uz.revolution.icecreammagnit.fragments.AddProductFragment"
+        android:name="uz.revolution.icecreammagnit.mahsulotlar.AddProductFragment"
         android:label="Yangi mahsulot qo'shish"
         tools:layout="@layout/fragment_add_product" />
 </navigation>

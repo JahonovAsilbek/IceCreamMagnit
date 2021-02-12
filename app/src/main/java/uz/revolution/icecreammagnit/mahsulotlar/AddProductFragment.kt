@@ -1,4 +1,4 @@
-package uz.revolution.icecreammagnit.fragments
+package uz.revolution.icecreammagnit.mahsulotlar
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

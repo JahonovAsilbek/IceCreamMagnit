@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".fragments.AddProductFragment">
+    tools:context=".mahsulotlar.AddProductFragment">
 
     <ScrollView
         android:layout_width="match_parent"
