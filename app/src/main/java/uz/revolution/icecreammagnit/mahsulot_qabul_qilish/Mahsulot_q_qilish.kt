@@ -108,8 +108,11 @@ class Mahsulot_q_qilishFragment : Fragment() {
 
     private fun loadData() {
         receivedList = ArrayList<ReceivedProducts>()
-        productDao?.insertSupplier(Supplier(2,"Vazira MCHJ"))
-        productDao?.insertSupplier(Supplier(1,"Royal Muz MCHJ"))
+        productDao?.insertSupplier(Supplier("Vazira MCHJ"))
+        productDao?.insertSupplier(Supplier("Royal Muz MCHJ"))
+        productDao?.insertSupplier(Supplier("Asaxiy"))
+        productDao?.insertSupplier(Supplier("Mega"))
+        productDao?.insertSupplier(Supplier("Novo"))
 //        productDao?.insertReceivedProducts(ReceivedProducts())
         receivedList=productDao?.getAllReceivedProducts() as ArrayList
 

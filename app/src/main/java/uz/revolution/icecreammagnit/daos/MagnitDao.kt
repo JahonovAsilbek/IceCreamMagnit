@@ -62,7 +62,7 @@ interface MagnitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDriver(driver: Driver)
 
-    @Query("UPDATE driver SET serial_number=:serialNumber, date=:date, product=:product, total_box=:totalBox, given_cash=:givenCash, received_cash=:receivedCash WHERE driverID=:driverID")
+    @Query("UPDATE driver SET serial_number=:serialNumber, date=:date, product=:product, total_box=:totalBox, given_cash=:givenCash, received_cash=:receivedCash WHERE id=:driverID")
     fun updateDriver(
         serialNumber: Int,
         date: String,
@@ -143,10 +143,10 @@ interface MagnitDao {
     @Query("SELECT * FROM supplier")
     fun getAllSuppliers(): List<Supplier>
 
-    @Query("UPDATE supplier SET name=:name WHERE supplierID=:supplierID")
+    @Query("UPDATE supplier SET name=:name WHERE supplier_id=:supplierID")
     fun updateSupplier(name: String, supplierID: Int)
 
-    @Query("SELECT * FROM supplier WHERE supplierID=:id")
+    @Query("SELECT * FROM supplier WHERE supplier_id=:id")
     fun getSupplierByID(id: Int):Supplier
 
     /*
