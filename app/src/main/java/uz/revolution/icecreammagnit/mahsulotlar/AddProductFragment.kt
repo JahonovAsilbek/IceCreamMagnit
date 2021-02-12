@@ -37,6 +37,7 @@ class AddProductFragment : Fragment() {
                     Product(
                         getMagnitDao.getProductList().size+1,
                         2,
+                        //qilinadigan ishi bor
                         productName,
                         Integer.parseInt(productMijozCost),
                         Integer.parseInt(productDrCost),
