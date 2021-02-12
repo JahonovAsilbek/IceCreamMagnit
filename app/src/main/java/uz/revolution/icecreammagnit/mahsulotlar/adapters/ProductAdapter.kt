@@ -19,12 +19,12 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
     var chek = true
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
-    lateinit var supplierList: List<Supplier>
+    lateinit var supplierList: ArrayList<Supplier>
 
     inner class Vh(itemview: View) : RecyclerView.ViewHolder(itemview) {
         fun BindView(product: Product) {
 
-            supplierList = getMagnitDao?.getAllSuppliers()!!
+            supplierList = getMagnitDao?.getAllSuppliers()!! as ArrayList
             itemView.item_product_name.text = product.name
             itemView.item_product_qolgan_soni.text = product.balance.toString()
             itemView.item_product_karobkada_soni.text = product.totalBox.toString() + "x"
@@ -69,7 +69,7 @@ class ProductAdapter(var productList: List<Product>) : RecyclerView.Adapter<Prod
             var str = ""
             for (i in 0 until supplierList.size) {
                 if (supplierList[i].supplierID == id) {
-                    str = supplierList[i].name
+                    str = supplierList[i].name!!
                 }
             }
             return str

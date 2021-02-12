@@ -35,7 +35,6 @@ class AddProductFragment : Fragment() {
 
                 var msg =getMagnitDao?.insertProduct(
                     Product(
-                        getMagnitDao.getProductList().size + 1,
                         2,
                         //qilinadigan ishi bor
                         productName,

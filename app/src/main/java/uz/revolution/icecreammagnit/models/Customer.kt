@@ -2,22 +2,51 @@ package uz.revolution.icecreammagnit.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "customer")
-data class Customer(
+class Customer : Serializable {
 
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int = 0
 
-    @ColumnInfo(name = "serial_number") val serialNumber: Int,
+    @ColumnInfo(name = "serial_number")
+    var serialNumber: Int = 0
 
-    @ColumnInfo(name = "date") val date: String?,
+    @ColumnInfo(name = "date")
+    var date: String? = null
 
-    @ColumnInfo(name = "product") val product: String,
+    @ColumnInfo(name = "product")
+    var product: String? = null
 
-    @ColumnInfo(name = "total_box") val totalBox: Int,
+    @ColumnInfo(name = "total_box")
+    var totalBox: Int = 0
 
-    @ColumnInfo(name = "given_cash") val givenCash: Int,
+    @ColumnInfo(name = "given_cash")
+    var givenCash: Int = 0
 
-    @ColumnInfo(name = "received_cash") val receivedCash: Int
-)
+    @ColumnInfo(name = "received_cash")
+    var receivedCash: Int = 0
+
+    @Ignore
+    constructor(
+        serialNumber: Int,
+        date: String,
+        product: String,
+        totalBox: Int,
+        givenCash: Int,
+        receivedCash: Int
+    ) {
+        this.serialNumber = serialNumber
+        this.date = date
+        this.product = product
+        this.totalBox = totalBox
+        this.givenCash = givenCash
+        this.receivedCash = receivedCash
+    }
+
+    public constructor()
+}

@@ -2,24 +2,52 @@ package uz.revolution.icecreammagnit.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "products")
-data class Product(
+class Product : Serializable {
 
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int = 0
 
-    @ColumnInfo(name = "supplier_id") val supplierID: Int,
+    @ColumnInfo(name = "supplier_id")
+    var supplierID: Int = 0
 
-    @ColumnInfo(name = "name") val name: String?,
+    @ColumnInfo(name = "name")
+    var name: String? = null
 
-    @ColumnInfo(name = "cost_customer") val costCustomer: Int,
+    @ColumnInfo(name = "cost_customer")
+    var costCustomer: Int = 0
 
-    @ColumnInfo(name = "cost_driver") val costDriver: Int,
+    @ColumnInfo(name = "cost_driver")
+    var costDriver: Int = 0
 
-    @ColumnInfo(name = "total_box") val totalBox: Int,
+    @ColumnInfo(name = "total_box")
+    var totalBox: Int = 0
 
-    @ColumnInfo(name = "balance") val balance: Int
+    @ColumnInfo(name = "balance")
+    var balance: Int = 0
 
-):Serializable
+    constructor()
+
+    @Ignore
+    constructor(
+        supplierID: Int,
+        name: String,
+        costCustomer: Int,
+        costDriver: Int,
+        totalBox: Int,
+        balance: Int
+    ) {
+        this.supplierID = supplierID
+        this.name = name
+        this.costCustomer = costCustomer
+        this.costDriver = costDriver
+        this.totalBox = totalBox
+        this.balance = balance
+    }
+
+}
