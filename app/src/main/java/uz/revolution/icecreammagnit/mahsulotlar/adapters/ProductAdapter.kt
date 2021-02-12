@@ -1,6 +1,7 @@
 package uz.revolution.icecreammagnit.mahsulotlar.adapters
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,9 @@ class ProductAdapter(var productList: List<Product>,var supplierList:List<Suppli
             itemView.item_product_mijoz_uchun_narx_soni.text =
                 product.costCustomer.toString() + " so'm"
             itemView.item_product_narx.text = "Narx:   " + product.costDriver.toString() + "so'm"
-            itemView.item_product_tamonotchi_name.text = TaminotchiniTop(product.supplierID)
+            itemView.item_product_tamonotchi_name.text = supplierList[product.supplierID - 1].name
+            Log.d("TTTT", "BindView: ${productList[0].supplierID}")
+            Log.d("TTTT", "BindView: ${supplierList[0].name}")
 
             itemView.setOnClickListener(View.OnClickListener {
                 if (chek) {
@@ -64,15 +67,6 @@ class ProductAdapter(var productList: List<Product>,var supplierList:List<Suppli
             })
         }
 
-        fun TaminotchiniTop(id: Int): String {
-            var str = ""
-            for (i in 0 until supplierList.size) {
-                if (supplierList[i].supplierID == id) {
-                    str = supplierList[i].name!!
-                }
-            }
-            return str
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vh {

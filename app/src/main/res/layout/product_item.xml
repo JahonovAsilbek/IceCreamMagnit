@@ -149,10 +149,10 @@
                     android:id="@+id/item_product_tamonotchi_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:text="Vazira MCHJ"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

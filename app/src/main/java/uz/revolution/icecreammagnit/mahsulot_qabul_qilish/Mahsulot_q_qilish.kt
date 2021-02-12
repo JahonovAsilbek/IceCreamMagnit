@@ -108,11 +108,13 @@ class Mahsulot_q_qilishFragment : Fragment() {
 
     private fun loadData() {
         receivedList = ArrayList<ReceivedProducts>()
-        productDao?.insertSupplier(Supplier("Vazira MCHJ"))
-        productDao?.insertSupplier(Supplier("Royal Muz MCHJ"))
-        productDao?.insertSupplier(Supplier("Asaxiy"))
-        productDao?.insertSupplier(Supplier("Mega"))
-        productDao?.insertSupplier(Supplier("Novo"))
+//        productDao?.insertSupplier(Supplier("Vazira MCHJ"))
+//        productDao?.insertSupplier(Supplier("Royal Muz MCHJ"))
+//        productDao?.insertSupplier(Supplier("Asaxiy"))
+//        productDao?.insertSupplier(Supplier("Mega"))
+        //bular shart emas Man App da agar size 0 bo'ladigan bo'lsa 7ta kiritdim onCreateda ishlab ketadi bemalol foydalanaver
+        //Olimjon
+//        productDao?.insertSupplier(Supplier("Novo"))
 //        productDao?.insertReceivedProducts(ReceivedProducts())
         receivedList=productDao?.getAllReceivedProducts() as ArrayList
 
