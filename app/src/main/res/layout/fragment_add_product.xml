@@ -13,10 +13,11 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
+                android:id="@+id/add_product_edittexts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -24,7 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     app:hintTextColor="#03A9F4"
                     app:boxStrokeWidthFocused="1.5dp"
                     app:boxStrokeColor="#03A9F4"
@@ -38,6 +39,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:id="@+id/add_product_mahsulot_nomi"
+                        android:maxLines="20"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:layout_height="50dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -45,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     app:hintTextColor="#03A9F4"
                     app:boxStrokeWidthFocused="1.5dp"
                     app:boxStrokeColor="#03A9F4"
@@ -58,16 +60,95 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
+                        android:maxLines="20"
+                        android:inputType="number"
                         android:id="@+id/add_product_mahsulot_narxi"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:layout_height="50dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    app:hintTextColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="#03A9F4"
+                    app:helperTextTextColor="#03A9F4"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Mijoz uchun narx"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:maxLines="20"
+                    android:id="@+id/add_product_mahsulot_mijoz_uchun_narx"
+                    android:inputType="number"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:layout_height="50dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    app:hintTextColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="#03A9F4"
+                    app:helperTextTextColor="#03A9F4"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Qolgan miqdor"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/add_product_mahsulot_astakasi"
+                    android:maxLines="20"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:inputType="number"
+                    android:layout_height="50dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    app:hintTextColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="#03A9F4"
+                    app:helperTextTextColor="#03A9F4"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Karobkada soni"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/add_product_mahsulot_karobkada_soni"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:inputType="number"
+                    android:maxLines="20"
+                    android:layout_height="50dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:entries="@array/array_name"
+                    android:background="@drawable/edittext_bg"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_height="50dp" />
             </LinearLayout>
             <LinearLayout
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/add_product_buttons"
+                android:layout_gravity="bottom"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -77,6 +158,7 @@
                     android:id="@+id/add_product_bekor_qilish"
                     android:text="Bekor qilish"
                     android:layout_margin="16dp"
+                    android:backgroundTint="#fff"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
                 <Button
