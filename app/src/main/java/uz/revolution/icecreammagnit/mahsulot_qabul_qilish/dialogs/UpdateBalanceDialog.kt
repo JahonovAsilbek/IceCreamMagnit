@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.update_balance_dialog.view.*
 import uz.revolution.icecreammagnit.R
 
@@ -34,22 +34,25 @@ class UpdateBalanceDialog : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         root = inflater.inflate(R.layout.update_balance_dialog, container, false)
+        dialog?.requestWindowFeature(STYLE_NORMAL)
+        isCancelable = false
 
         root.update_balance_btn.setOnClickListener {
             if (root.update_balance_et.text.toString().trim().isNotEmpty()) {
-                val balance = root.update_balance_et.text.toString()
+                val givenCash = root.update_balance_et.text.toString()
                 if (onAddClick != null) {
-                    onAddClick!!.onClick(balance.toInt())
+                    onAddClick!!.onClick(givenCash.toInt())
                 }
                 dismiss()
             } else {
-                container?.getChildAt(0)?.let {
-                    Snackbar.make(it, "Miqdorni kiriting", Snackbar.LENGTH_LONG)
-                        .setAction("Ok") { }.show()
-                }
+                Toast.makeText(root.context, "Summani kiriting!", Toast.LENGTH_LONG).show()
             }
+        }
+
+        root.update_balance_btn_cancel.setOnClickListener {
+            dismiss()
         }
 
         return root
@@ -59,7 +62,7 @@ class UpdateBalanceDialog : DialogFragment() {
     override fun getTheme(): Int = R.style.RoundedCornersDialog
 
     interface OnAddClick {
-        fun onClick(balance: Int)
+        fun onClick(givenCash: Int)
     }
 
     fun setOnAddClick(onAddClick: OnAddClick) {

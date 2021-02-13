@@ -18,10 +18,9 @@ class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
         fun onBind(receivedProducts: ReceivedProducts) {
             itemView.date.text="Sana: ${receivedProducts.date}"
             itemView.received_cash.text="Olingan summa: ${receivedProducts.receivedCash}"
-            itemView.total_cash.text="Ja'mi summa: ${receivedProducts.totalCash}"
+            itemView.total_cash.text="Ja'mi summa: ${receivedProducts.givenCash}"
             itemView.products.text="Tovarlar: ${receivedProducts.product}"
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

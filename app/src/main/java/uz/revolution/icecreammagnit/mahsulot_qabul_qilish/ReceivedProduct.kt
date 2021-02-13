@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.received_product.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.ReceivedItemAdapter
 import uz.revolution.icecreammagnit.models.ReceivedProducts
-
-private const val ARG_PARAM1 = "received"
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ReceivedProductFragment : Fragment() {
 
@@ -31,20 +31,17 @@ class ReceivedProductFragment : Fragment() {
     ): View {
         root = inflater.inflate(R.layout.received_product, container, false)
 
+        param1!!.reverse()
         adapter = ReceivedItemAdapter(param1!!)
         root.received_rv.adapter = adapter
+        adapter.notifyDataSetChanged()
 
         return root
     }
 
-//    companion object {
-//
-//        @JvmStatic
-//        fun newInstance(param1: String) =
-//            ReceivedProductFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                }
-//            }
-//    }
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
 }

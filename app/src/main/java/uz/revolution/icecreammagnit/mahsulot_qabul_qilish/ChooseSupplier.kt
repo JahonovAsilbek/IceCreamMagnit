@@ -61,14 +61,6 @@ class ChooseSupplier : Fragment() {
 
     private fun loadData() {
         supplierList = ArrayList()
-//        supplierList.add(Supplier(0,"Qovunchi MCHJ"))
-//        supplierList.add(Supplier(1,"Vazira MCHJ"))
-
-//        supplierList.add(Supplier(2,"Royal Muz Servis"))
-//        supplierList.add(Supplier(3,"Qovunchi MCHJ"))
-//        supplierList.add(Supplier(4,"Qovunchi MCHJ"))
-//        supplierList.add(Supplier(5,"Qovunchi MCHJ"))
-
         supplierList = productDao?.getAllSuppliers() as ArrayList
 
     }

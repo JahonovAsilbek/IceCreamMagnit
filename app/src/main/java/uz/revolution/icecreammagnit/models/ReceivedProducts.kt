@@ -26,7 +26,7 @@ class ReceivedProducts : Serializable {
     var totalBox: Int = 0
 
     @ColumnInfo(name = "total_cash")
-    var totalCash: Int = 0
+    var givenCash: Int = 0
 
     @ColumnInfo(name = "received_cash")
     var receivedCash: Int = 0
@@ -39,14 +39,14 @@ class ReceivedProducts : Serializable {
         date: String,
         product: String,
         totalBox: Int,
-        totalCash: Int,
+        givenCash: Int,
         receivedCash: Int
     ) {
         this.supplierID = supplierID
         this.date = date
         this.product = product
         this.totalBox = totalBox
-        this.totalCash = totalCash
+        this.givenCash = givenCash
         this.receivedCash = receivedCash
     }
 }

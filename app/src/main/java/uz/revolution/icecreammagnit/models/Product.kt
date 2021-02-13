@@ -25,6 +25,9 @@ class Product : Serializable {
     @ColumnInfo(name = "cost_driver")
     var costDriver: Int = 0
 
+    @ColumnInfo(name = "received_cost")
+    var receivedCost:Int=0
+
     @ColumnInfo(name = "total_box")
     var totalBox: Int = 0
 
@@ -39,6 +42,7 @@ class Product : Serializable {
         name: String,
         costCustomer: Int,
         costDriver: Int,
+        receivedCost:Int,
         totalBox: Int,
         balance: Int
     ) {
@@ -46,6 +50,7 @@ class Product : Serializable {
         this.name = name
         this.costCustomer = costCustomer
         this.costDriver = costDriver
+        this.receivedCost=receivedCost
         this.totalBox = totalBox
         this.balance = balance
     }

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_set_cost_product.view.*
+import kotlinx.android.synthetic.main.item_set_quantity_product.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.Product
 
@@ -28,7 +28,7 @@ class UpdateProductBalanceAdapter(var productList: ArrayList<Product>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_set_cost_product, parent, false)
+                .inflate(R.layout.item_set_quantity_product, parent, false)
         )
     }
 

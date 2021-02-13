@@ -46,6 +46,8 @@ class AddProductFragment : Fragment() {
                         productName,
                         Integer.parseInt(productMijozCost),
                         Integer.parseInt(productDrCost),
+                        2000,
+                        //taxlayman uyga borib
                         Integer.parseInt(karobkada_soni),
                         Integer.parseInt(qolgan_astatka)
 

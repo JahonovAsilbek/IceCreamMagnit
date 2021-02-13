@@ -8,7 +8,7 @@ import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.models.*
 
 @Database(
-    entities = [Product::class, Driver::class, Customer::class, Supplier::class, ReceivedProducts::class, Magnit::class,Temporary::class],
+    entities = [Product::class, Driver::class, Customer::class, Supplier::class, ReceivedProducts::class, Magnit::class,Temporary::class,CustomerTemporary::class,MagnitTemporary::class],
     version = 1,
     exportSchema = false
 )

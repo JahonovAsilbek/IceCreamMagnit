@@ -20,19 +20,20 @@ interface MagnitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProduct(product: Product)
 
-    @Query("UPDATE products SET supplier_id=:supplierID, name=:name, cost_customer=:costCustomer,cost_driver=:costDriver,total_box=:totalBox, balance=:balance WHERE id=:id")
+    @Query("UPDATE products SET supplier_id=:supplierID, name=:name, cost_customer=:costCustomer,cost_driver=:costDriver,received_cost=:receivedCost,total_box=:totalBox, balance=:balance WHERE id=:id")
     fun updateProduct(
         supplierID: Int,
         name: String,
         costCustomer: Int,
         costDriver: Int,
+        receivedCost: Int,
         totalBox: Int,
         balance: Int,
         id: Int
     )
 
     @Query("UPDATE products SET balance=:balance+balance WHERE id=:id")
-    fun addBalance(balance: Int,id: Int)
+    fun addBalance(balance: Int, id: Int)
 
     @Delete
     fun deleteProduct(product: Product)
@@ -42,6 +43,9 @@ interface MagnitDao {
 
     @Query("SELECT * FROM products WHERE supplier_id=:supplierID")
     fun getProductBySupplierID(supplierID: Int): List<Product>
+
+    @Query("SELECT * FROM products WHERE id=:id")
+    fun getProductByID(id: Int): Product
 
     /*
     *
@@ -147,7 +151,7 @@ interface MagnitDao {
     fun updateSupplier(name: String, supplierID: Int)
 
     @Query("SELECT * FROM supplier WHERE supplier_id=:id")
-    fun getSupplierByID(id: Int):Supplier
+    fun getSupplierByID(id: Int): Supplier
 
     /*
     *
@@ -226,12 +230,59 @@ interface MagnitDao {
     fun insertTemporary(temporary: Temporary)
 
     @Query("SELECT * FROM `temporary`")
-    fun getAllTemporary():List<Temporary>
+    fun getAllTemporary(): List<Temporary>
 
     @Delete
     fun deleteTemporary(temporary: Temporary)
 
     @Query("DELETE FROM `temporary`")
     fun deleteAllTemporary()
+
+    /*
+   *
+   *
+   *
+   *
+   *
+   *
+                       CustomerTemporary Dao Methods
+   *
+   *
+   *
+   *
+   *
+   *
+   */
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCustomerTemporary(customerTemporary: CustomerTemporary)
+
+    @Query("SELECT * FROM customer_temporary")
+    fun getAllCustomerTemporary(): List<CustomerTemporary>
+
+    @Query("SELECT * FROM customer_temporary WHERE customer_id=:customerID")
+    fun getCustomerTemporaryByCustomerID(customerID: Int): List<CustomerTemporary>
+
+    /*
+   *
+   *
+   *
+   *
+   *
+   *
+                       MagnitTemporary Dao Methods
+   *
+   *
+   *
+   *
+   *
+   *
+   */
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMagnitTemporary(magnitTemporary: MagnitTemporary)
+
+    @Query("SELECT * FROM magnit_temporary")
+    fun getAllMagnitTemporary():List<MagnitTemporary>
 
 }

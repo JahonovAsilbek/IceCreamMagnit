@@ -67,6 +67,8 @@ class EditProductFragment : Fragment() {
                     productName,
                     Integer.parseInt(productMijozCost),
                     Integer.parseInt(productDrCost),
+                    1800,
+                    //berayam qilinaykon ishi bo
                     Integer.parseInt(karobkada_soni),
                     Integer.parseInt(qolgan_astatka),
                     product?.id!!

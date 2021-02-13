@@ -7,21 +7,19 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.mahsulot_q_qilish.view.*
-import kotlinx.android.synthetic.main.product_item.view.*
 import kotlinx.android.synthetic.main.tab_item.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.ReceivedProductAdapter
 import uz.revolution.icecreammagnit.models.ReceivedProducts
-import uz.revolution.icecreammagnit.models.Supplier
 
 private const val ARG_PARAM1 = "param1"
 
 class Mahsulot_q_qilishFragment : Fragment() {
 
     private var param1: String? = null
-//    private var productDao:MagnitDao?=null
+    private var productDao:MagnitDao?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +28,13 @@ class Mahsulot_q_qilishFragment : Fragment() {
         }
         setHasOptionsMenu(true)
         database = AppDatabase.get.getDatabase()
-        productDao= database!!.getProductDao()
+        productDao = database!!.getProductDao()
     }
 
     lateinit var root: View
     lateinit var adapter: ReceivedProductAdapter
-    private var receivedList: ArrayList<ReceivedProducts>? = null
-    var database:AppDatabase?=null
-    var productDao:MagnitDao?=null
+    private lateinit var receivedListBySupplierID: ArrayList<Category>
+    var database: AppDatabase? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,9 +43,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
         root = inflater.inflate(R.layout.mahsulot_q_qilish, container, false)
 
         loadData()
-        adapter = ReceivedProductAdapter(receivedList!!, childFragmentManager)
-        root.received_vp.adapter = adapter
-        root.received_tab_layout.setupWithViewPager(root.received_vp)
+        loadAdapters()
         setTabs()
 
         root.received_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -68,10 +63,16 @@ class Mahsulot_q_qilishFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
-
         })
 
         return root
+    }
+
+    private fun loadAdapters() {
+        adapter = ReceivedProductAdapter(receivedListBySupplierID, childFragmentManager)
+        root.received_vp.adapter = adapter
+        root.received_tab_layout.setupWithViewPager(root.received_vp)
+        adapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -82,8 +83,6 @@ class Mahsulot_q_qilishFragment : Fragment() {
         if (item.itemId == R.id.show_suppliers) {
             findNavController().navigate(R.id.chooseSupplier)
         }
-
-
         return true
     }
 
@@ -94,7 +93,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
             val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
             val tab = root.received_tab_layout.getTabAt(i)
             tab?.customView = tabView
-            tabView.title_tv.text = receivedList!![i].supplierID.toString()
+            tabView.title_tv.text = receivedListBySupplierID[i].title
 
             if (i == 0) {
                 tabView.circle_layout.visibility = View.VISIBLE
@@ -107,27 +106,16 @@ class Mahsulot_q_qilishFragment : Fragment() {
     }
 
     private fun loadData() {
-        receivedList = ArrayList<ReceivedProducts>()
-//        productDao?.insertSupplier(Supplier("Vazira MCHJ"))
-//        productDao?.insertSupplier(Supplier("Royal Muz MCHJ"))
-//        productDao?.insertSupplier(Supplier("Asaxiy"))
-//        productDao?.insertSupplier(Supplier("Mega"))
-        //bular shart emas Man App da agar size 0 bo'ladigan bo'lsa 7ta kiritdim onCreateda ishlab ketadi bemalol foydalanaver
-        //Olimjon
-//        productDao?.insertSupplier(Supplier("Novo"))
-//        productDao?.insertReceivedProducts(ReceivedProducts())
-        receivedList=productDao?.getAllReceivedProducts() as ArrayList
+        receivedListBySupplierID = ArrayList()
+
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(1).name.toString(),(productDao!!.getReceivedProductsBySupplierID(1) as ArrayList)))
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(2).name.toString(),(productDao!!.getReceivedProductsBySupplierID(2) as ArrayList)))
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(3).name.toString(),(productDao!!.getReceivedProductsBySupplierID(3) as ArrayList)))
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(4).name.toString(),(productDao!!.getReceivedProductsBySupplierID(4) as ArrayList)))
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(5).name.toString(),(productDao!!.getReceivedProductsBySupplierID(5) as ArrayList)))
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(6).name.toString(),(productDao!!.getReceivedProductsBySupplierID(6) as ArrayList)))
+        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(7).name.toString(),(productDao!!.getReceivedProductsBySupplierID(7) as ArrayList)))
 
     }
-
-    companion object {
-
-        fun newInstance(param1: String) =
-            Mahsulot_q_qilishFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
-    }
-
+    inner class Category(var title:String,var receivedListBySupplierID:ArrayList<ReceivedProducts>)
 }
