@@ -10,8 +10,6 @@ import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.ReceivedItemAdapter
 import uz.revolution.icecreammagnit.models.ReceivedProducts
 
-private const val ARG_PARAM1 = "received"
-
 class ReceivedProductFragment : Fragment() {
 
     private var param1: ArrayList<ReceivedProducts>? = null
@@ -37,14 +35,4 @@ class ReceivedProductFragment : Fragment() {
         return root
     }
 
-//    companion object {
-//
-//        @JvmStatic
-//        fun newInstance(param1: String) =
-//            ReceivedProductFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                }
-//            }
-//    }
 }

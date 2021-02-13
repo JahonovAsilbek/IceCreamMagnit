@@ -39,8 +39,8 @@ class Driver : Serializable {
         date: String,
         product: String,
         totalBox: Int,
-        givenCash: Int,
-        receivedCash: Int
+        givenCash: Int,  /// biza bergan tovarlar summasi
+        receivedCash: Int // haydovchi bergan summa
     ) {
         this.serialNumber = serialNumber
         this.date = date

@@ -20,12 +20,13 @@ interface MagnitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProduct(product: Product)
 
-    @Query("UPDATE products SET supplier_id=:supplierID, name=:name, cost_customer=:costCustomer,cost_driver=:costDriver,total_box=:totalBox, balance=:balance WHERE id=:id")
+    @Query("UPDATE products SET supplier_id=:supplierID, name=:name, cost_customer=:costCustomer,cost_driver=:costDriver,received_cost=:receivedCost,total_box=:totalBox, balance=:balance WHERE id=:id")
     fun updateProduct(
         supplierID: Int,
         name: String,
         costCustomer: Int,
         costDriver: Int,
+        receivedCost:Int,
         totalBox: Int,
         balance: Int,
         id: Int
@@ -42,6 +43,9 @@ interface MagnitDao {
 
     @Query("SELECT * FROM products WHERE supplier_id=:supplierID")
     fun getProductBySupplierID(supplierID: Int): List<Product>
+
+    @Query("SELECT * FROM products WHERE id=:id")
+    fun getProductByID(id: Int):Product
 
     /*
     *
