@@ -113,11 +113,19 @@ class UpdateProductBalanceFragment : Fragment() {
                             )
                         )
                         findNavController().popBackStack()
-                        Snackbar.make(it, "Muvaffaqiyatli qo'shildi", Snackbar.LENGTH_LONG).show()
+                        val snackBar =
+                            Snackbar.make(it, "Muvaffaqiyatli qo'shildi", Snackbar.LENGTH_LONG)
+                        val sView = snackBar.view
+                        sView.background = resources.getDrawable(R.drawable.btn_back)
+                        snackBar.show()
                     }
                 })
             } else {
-                Snackbar.make(it, "Barcha maydonlarni to'ldiring!", Snackbar.LENGTH_LONG).show()
+                val snackBar =
+                    Snackbar.make(it, "Barcha maydonlarni to'ldiring!", Snackbar.LENGTH_LONG)
+                val sView = snackBar.view
+                sView.background = resources.getDrawable(R.drawable.btn_back)
+                snackBar.show()
             }
         }
 

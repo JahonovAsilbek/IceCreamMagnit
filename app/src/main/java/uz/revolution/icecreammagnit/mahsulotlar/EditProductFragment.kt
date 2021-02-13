@@ -75,22 +75,28 @@ class EditProductFragment : Fragment() {
                 )
                 findNavController().popBackStack()
                 container?.let {
-                    Snackbar.make(
+                    val snackBar=Snackbar.make(
                         it.getChildAt(0),
                         "Mahsulot muvaffaqiyatli tahrirlandi",
                         Snackbar.LENGTH_SHORT
                     )
-                        .show()
+
+                    val sView = snackBar.view
+                    sView.background = resources.getDrawable(R.drawable.btn_back)
+                    snackBar.show()
                 }
             } else {
                 container?.getChildAt(0)?.let {
-                    Snackbar.make(it, "Barcha maydonlarni to'ldiring!", Snackbar.LENGTH_LONG)
+                    val snackBar=Snackbar.make(it, "Barcha maydonlarni to'ldiring!", Snackbar.LENGTH_LONG)
                         .setAction("Ok", object : View.OnClickListener {
                             override fun onClick(v: View?) {
 
                             }
 
-                        }).show()
+                        })
+                    val sView = snackBar.view
+                    sView.background = resources.getDrawable(R.drawable.btn_back)
+                    snackBar.show()
                 }
             }
         }

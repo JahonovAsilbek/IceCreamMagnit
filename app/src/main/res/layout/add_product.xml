@@ -1,10 +1,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context=".mahsulotlar.AddProductFragment">
 
     <ScrollView
@@ -12,194 +12,206 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/add_product_edittexts"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="12dp"
-                    app:hintTextColor="#03A9F4"
-                    app:boxStrokeWidthFocused="1.5dp"
-                    app:boxStrokeColor="#03A9F4"
-                    app:helperTextTextColor="#03A9F4"
-                    app:errorEnabled="true"
-                    android:textColorHint="@android:color/black"
-                    app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
                     android:hint="Mahsulot nomi"
-                    android:layout_height="wrap_content">
+                    android:textColorHint="@android:color/black"
+                    app:boxStrokeColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    app:helperTextTextColor="#03A9F4"
+                    app:hintTextColor="#03A9F4">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/add_product_mahsulot_nomi"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:maxLines="20"
-                        android:textCursorDrawable="@drawable/cursor_color"
-                        android:layout_height="50dp" />
+                        android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="12dp"
-                    app:hintTextColor="#03A9F4"
-                    app:boxStrokeWidthFocused="1.5dp"
-                    app:boxStrokeColor="#03A9F4"
-                    app:helperTextTextColor="#03A9F4"
-                    app:errorEnabled="true"
-                    android:textColorHint="@android:color/black"
-                    app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
                     android:hint="Mahsulot narxi"
-                    android:layout_height="wrap_content">
+                    android:textColorHint="@android:color/black"
+                    app:boxStrokeColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    app:helperTextTextColor="#03A9F4"
+                    app:hintTextColor="#03A9F4">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:maxLines="20"
-                        android:inputType="number"
                         android:id="@+id/add_product_mahsulot_narxi"
-                        android:textCursorDrawable="@drawable/cursor_color"
-                        android:layout_height="50dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="number"
+                        android:maxLines="20"
+                        android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="12dp"
-                    app:hintTextColor="#03A9F4"
-                    app:boxStrokeWidthFocused="1.5dp"
-                    app:boxStrokeColor="#03A9F4"
-                    app:helperTextTextColor="#03A9F4"
-                    app:errorEnabled="true"
-                    android:textColorHint="@android:color/black"
-                    app:errorTextColor="#ff0000"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="Mijoz uchun narx"
-                    android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:maxLines="20"
-                    android:id="@+id/add_product_mahsulot_mijoz_uchun_narx"
-                    android:inputType="number"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:layout_height="50dp" />
-                </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="12dp"
-                    app:hintTextColor="#03A9F4"
-                    app:boxStrokeWidthFocused="1.5dp"
-                    app:boxStrokeColor="#03A9F4"
-                    app:helperTextTextColor="#03A9F4"
-                    app:errorEnabled="true"
-                    android:textColorHint="@android:color/black"
-                    app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="Kirib keladigan narx"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Mijoz uchun narx"
+                    android:textColorHint="@android:color/black"
+                    app:boxStrokeColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    app:helperTextTextColor="#03A9F4"
+                    app:hintTextColor="#03A9F4">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_product_mahsulot_mijoz_uchun_narx"
                         android:layout_width="match_parent"
-                        android:maxLines="20"
-                        android:id="@+id/add_product_mahsulot_keladigan_narx"
+                        android:layout_height="50dp"
                         android:inputType="number"
-                        android:textCursorDrawable="@drawable/cursor_color"
-                        android:layout_height="50dp" />
+                        android:maxLines="20"
+                        android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="12dp"
-                    app:hintTextColor="#03A9F4"
-                    app:boxStrokeWidthFocused="1.5dp"
-                    app:boxStrokeColor="#03A9F4"
-                    app:helperTextTextColor="#03A9F4"
-                    app:errorEnabled="true"
-                    android:textColorHint="@android:color/black"
-                    app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Kirib keladigan narx"
+                    android:textColorHint="@android:color/black"
+                    app:boxStrokeColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    app:helperTextTextColor="#03A9F4"
+                    app:hintTextColor="#03A9F4">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_product_mahsulot_keladigan_narx"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="number"
+                        android:maxLines="20"
+                        android:textCursorDrawable="@drawable/cursor_color" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
                     android:hint="Qolgan miqdor"
-                    android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/add_product_mahsulot_astakasi"
-                    android:maxLines="20"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:inputType="number"
-                    android:layout_height="50dp" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="12dp"
-                    app:hintTextColor="#03A9F4"
-                    app:boxStrokeWidthFocused="1.5dp"
-                    app:boxStrokeColor="#03A9F4"
-                    app:helperTextTextColor="#03A9F4"
-                    app:errorEnabled="true"
                     android:textColorHint="@android:color/black"
+                    app:boxStrokeColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:errorEnabled="true"
                     app:errorTextColor="#ff0000"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="Karobkada soni"
-                    android:layout_height="wrap_content">
+                    app:helperTextTextColor="#03A9F4"
+                    app:hintTextColor="#03A9F4">
 
-                <com.google.android.material.textfield.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_product_mahsulot_astakasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="number"
+                        android:maxLines="20"
+                        android:textCursorDrawable="@drawable/cursor_color" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:id="@+id/add_product_mahsulot_karobkada_soni"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:inputType="number"
-                    android:maxLines="20"
-                    android:layout_height="50dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Karobkada soni"
+                    android:textColorHint="@android:color/black"
+                    app:boxStrokeColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="#ff0000"
+                    app:helperTextTextColor="#03A9F4"
+                    app:hintTextColor="#03A9F4">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_product_mahsulot_karobkada_soni"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="number"
+                        android:maxLines="20"
+                        android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/edittext_bg"
                     android:id="@+id/add_product_spinner"
-                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
-                    android:layout_height="50dp" />
+                    android:background="@drawable/edittext_bg" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/add_product_buttons"
-                android:layout_gravity="bottom"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="0dp"
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/add_product_bekor_qilish"
-                    android:text="Bekor qilish"
-                    android:layout_margin="16dp"
-                    android:backgroundTint="#fff"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-                <Button
                     android:layout_width="0dp"
-                    android:id="@+id/add_product_ok"
-                    android:text="Qo'shish"
-                    android:backgroundTint="#03A9F4"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:textColor="#fff"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+                    android:background="@drawable/dialog_corner"
+                    android:text="Bekor qilish"
+                    android:textColor="@color/toolbar_color"
+                    android:textAllCaps="false"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_product_ok"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_back"
+                    android:text="Qo'shish"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
