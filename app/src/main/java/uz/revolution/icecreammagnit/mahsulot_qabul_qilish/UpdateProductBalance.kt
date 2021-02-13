@@ -8,12 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.item_set_cost_product.view.*
+import kotlinx.android.synthetic.main.item_set_quantity_product.view.*
 import kotlinx.android.synthetic.main.update_balance.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.UpdateProductBalanceAdapter
+import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.dialogs.UpdateBalanceDialog
 import uz.revolution.icecreammagnit.models.Product
 import uz.revolution.icecreammagnit.models.ReceivedProducts
 import java.text.SimpleDateFormat
@@ -52,20 +53,6 @@ class UpdateProductBalanceFragment : Fragment() {
         root.update_balance_rv.adapter = adapter
         getCurrentDate()
 
-        adapter.setOnItemClick(object : UpdateProductBalanceAdapter.OnItemClick {
-            override fun onClick(product: Product, position: Int) {
-
-                val beginTransaction = childFragmentManager.beginTransaction()
-//                val dialog = UpdateBalanceDialog()
-//                dialog.show(beginTransaction, "Dialog")
-//                dialog.setOnAddClick(object : UpdateBalanceDialog.OnAddClick {
-//                    override fun onClick(balance: Int) {
-//                        productDao?.addBalance(balance, product.id)
-//                    }
-//                })
-            }
-        })
-
         root.update_balance_btn_all.setOnClickListener {
             var chindan_kelgani = false
             var productName: String = ""
@@ -99,29 +86,36 @@ class UpdateProductBalanceFragment : Fragment() {
                     } else {
                         son = 0
                     }
-                    val product = productDao?.getProductByID(itemID)
-                    totalbox += son
-                    receivedCash += product!!.receivedCost * son * product.totalBox
-                    productsStr += "${product.name}    ${son}x${product.totalBox}x${product.receivedCost}\n"
-                    productDao?.addBalance(son, itemID)
 
-
+                    if (son > 0) {
+                        val product = productDao?.getProductByID(itemID)
+                        totalbox += son
+                        receivedCash += product!!.receivedCost * son * product.totalBox
+                        productsStr += "${product.name}    ${son}x${product.totalBox}x${product.receivedCost}\n"
+                        productDao?.addBalance(son, itemID)
+                    }
 
                 }
 
-                productDao?.insertReceivedProducts(
-                    ReceivedProducts(
-                        supplierID,
-                        getCurrentDate(),
-                        productsStr!!,
-                        totalbox,
-                        2000000,
-                        receivedCash
-                    )
-                )
-
-                findNavController().popBackStack()
-                Snackbar.make(it, "Muvaffaqiyatli qo'shildi", Snackbar.LENGTH_LONG).show()
+                val beginTransaction = childFragmentManager.beginTransaction()
+                val dialog = UpdateBalanceDialog()
+                dialog.show(beginTransaction, "Dialog")
+                dialog.setOnAddClick(object : UpdateBalanceDialog.OnAddClick {
+                    override fun onClick(givenCash: Int) {
+                        productDao?.insertReceivedProducts(
+                            ReceivedProducts(
+                                supplierID,
+                                getCurrentDate(),
+                                productsStr!!,
+                                totalbox,
+                                givenCash,
+                                receivedCash
+                            )
+                        )
+                        findNavController().popBackStack()
+                        Snackbar.make(it, "Muvaffaqiyatli qo'shildi", Snackbar.LENGTH_LONG).show()
+                    }
+                })
             } else {
                 Snackbar.make(it, "Barcha maydonlarni to'ldiring!", Snackbar.LENGTH_LONG).show()
             }

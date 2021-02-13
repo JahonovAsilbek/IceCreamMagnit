@@ -21,7 +21,6 @@ class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
             itemView.total_cash.text="Ja'mi summa: ${receivedProducts.givenCash}"
             itemView.products.text="Tovarlar: ${receivedProducts.product}"
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

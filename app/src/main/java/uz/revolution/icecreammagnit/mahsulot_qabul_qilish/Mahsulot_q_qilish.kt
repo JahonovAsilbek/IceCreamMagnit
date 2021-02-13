@@ -43,9 +43,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
         root = inflater.inflate(R.layout.mahsulot_q_qilish, container, false)
 
         loadData()
-        adapter = ReceivedProductAdapter(receivedListBySupplierID!!, childFragmentManager)
-        root.received_vp.adapter = adapter
-        root.received_tab_layout.setupWithViewPager(root.received_vp)
+        loadAdapters()
         setTabs()
 
         root.received_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -65,10 +63,16 @@ class Mahsulot_q_qilishFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
-
         })
 
         return root
+    }
+
+    private fun loadAdapters() {
+        adapter = ReceivedProductAdapter(receivedListBySupplierID, childFragmentManager)
+        root.received_vp.adapter = adapter
+        root.received_tab_layout.setupWithViewPager(root.received_vp)
+        adapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -79,8 +83,6 @@ class Mahsulot_q_qilishFragment : Fragment() {
         if (item.itemId == R.id.show_suppliers) {
             findNavController().navigate(R.id.chooseSupplier)
         }
-
-
         return true
     }
 
@@ -91,7 +93,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
             val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
             val tab = root.received_tab_layout.getTabAt(i)
             tab?.customView = tabView
-            tabView.title_tv.text = receivedListBySupplierID!![i].title
+            tabView.title_tv.text = receivedListBySupplierID[i].title
 
             if (i == 0) {
                 tabView.circle_layout.visibility = View.VISIBLE
@@ -114,19 +116,6 @@ class Mahsulot_q_qilishFragment : Fragment() {
         receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(6).name.toString(),(productDao!!.getReceivedProductsBySupplierID(6) as ArrayList)))
         receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(7).name.toString(),(productDao!!.getReceivedProductsBySupplierID(7) as ArrayList)))
 
-
     }
-
     inner class Category(var title:String,var receivedListBySupplierID:ArrayList<ReceivedProducts>)
-
-    companion object {
-
-        fun newInstance(param1: String) =
-            Mahsulot_q_qilishFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
-    }
-
 }
