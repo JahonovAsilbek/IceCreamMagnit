@@ -12,6 +12,8 @@ import uz.revolution.icecreammagnit.models.ReceivedProducts
 class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
     RecyclerView.Adapter<ReceivedItemAdapter.VH>() {
 
+    private var onItemClick:OnItemClick?=null
+
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
@@ -20,6 +22,12 @@ class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
             itemView.received_cash.text="Olingan summa: ${receivedProducts.receivedCash}"
             itemView.total_cash.text="Ja'mi summa: ${receivedProducts.givenCash}"
             itemView.products.text="Tovarlar: ${receivedProducts.product}"
+
+            itemView.setOnClickListener {
+                if (onItemClick != null) {
+                    onItemClick!!.onClick(receivedProducts)
+                }
+            }
         }
     }
 
@@ -32,4 +40,12 @@ class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
     }
 
     override fun getItemCount(): Int = receivedList.size
+
+    interface OnItemClick{
+        fun onClick(receivedProducts: ReceivedProducts)
+    }
+
+    fun setOnItemClick(onItemClick: OnItemClick) {
+        this.onItemClick=onItemClick
+    }
 }

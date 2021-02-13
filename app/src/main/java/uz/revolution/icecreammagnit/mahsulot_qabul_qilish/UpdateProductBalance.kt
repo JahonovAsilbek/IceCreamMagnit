@@ -98,7 +98,7 @@ class UpdateProductBalanceFragment : Fragment() {
                 }
 
                 val beginTransaction = childFragmentManager.beginTransaction()
-                val dialog = UpdateBalanceDialog()
+                val dialog = UpdateBalanceDialog.newInstance(receivedCash.toString())
                 dialog.show(beginTransaction, "Dialog")
                 dialog.setOnAddClick(object : UpdateBalanceDialog.OnAddClick {
                     override fun onClick(givenCash: Int) {
