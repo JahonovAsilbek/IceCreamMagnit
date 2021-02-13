@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="12dp"
+        android:paddingTop="4dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="6dp"
         android:weightSum="10">
 
         <TextView
@@ -26,17 +28,33 @@
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/update_balance"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:background="@drawable/btn_back"
-            android:text="Qo'shish"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:hint="Miqdor"
+            android:layout_marginTop="3dp"
+            android:padding="0dp"
+            android:textColorHint="@android:color/black"
+            app:boxStrokeColor="#03A9F4"
+            app:boxStrokeWidthFocused="1.5dp"
+            app:errorEnabled="true"
+            app:errorTextColor="#ff0000"
+            app:helperTextTextColor="#03A9F4"
+            app:hintTextColor="#03A9F4">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/update_balance_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_gravity="center_vertical"
+            android:maxLines="20"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:textCursorDrawable="@drawable/cursor_color" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

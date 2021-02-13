@@ -94,6 +94,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="12dp"
+                    android:visibility="gone"
                     app:hintTextColor="#03A9F4"
                     app:boxStrokeWidthFocused="1.5dp"
                     app:boxStrokeColor="#03A9F4"

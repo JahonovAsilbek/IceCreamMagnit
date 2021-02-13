@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.mahsulot_q_qilish.view.*
+import kotlinx.android.synthetic.main.product_item.view.*
 import kotlinx.android.synthetic.main.tab_item.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.daos.MagnitDao
@@ -48,7 +49,6 @@ class Mahsulot_q_qilishFragment : Fragment() {
         adapter = ReceivedProductAdapter(receivedList!!, childFragmentManager)
         root.received_vp.adapter = adapter
         root.received_tab_layout.setupWithViewPager(root.received_vp)
-
         setTabs()
 
         root.received_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

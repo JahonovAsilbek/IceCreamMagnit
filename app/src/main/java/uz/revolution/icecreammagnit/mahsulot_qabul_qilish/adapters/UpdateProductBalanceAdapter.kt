@@ -16,12 +16,12 @@ class UpdateProductBalanceAdapter(var productList: ArrayList<Product>) :
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(product: Product,position: Int) {
             itemView.product_name.text = product.name
-
-            itemView.update_balance.setOnClickListener {
-                if (onItemClick != null) {
-                    onItemClick!!.onClick(product,position)
-                }
-            }
+            itemView.product_name.tag=product.id
+//            itemView.update_balance.setOnClickListener {
+//                if (onItemClick != null) {
+//                    onItemClick!!.onClick(product,position)
+//                }
+//            }
         }
     }
 
