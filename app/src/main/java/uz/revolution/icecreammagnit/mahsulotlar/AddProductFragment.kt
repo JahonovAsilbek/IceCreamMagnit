@@ -39,6 +39,7 @@ class AddProductFragment : Fragment() {
             var qolgan_astatka = root.add_product_mahsulot_astakasi.text.toString().trim()
             var karobkada_soni = root.add_product_mahsulot_karobkada_soni.text.toString().trim()
             var taminotchi_id = supplierList[root.add_product_spinner.selectedItemPosition].supplierID
+            var keladigan_narx=root.add_product_mahsulot_keladigan_narx.text.toString().trim()
             if (productName != "" && productDrCost != "" && productMijozCost != "" && qolgan_astatka != "" && karobkada_soni != "") {
                 var msg =getMagnitDao?.insertProduct(
                     Product(
@@ -46,8 +47,7 @@ class AddProductFragment : Fragment() {
                         productName,
                         Integer.parseInt(productMijozCost),
                         Integer.parseInt(productDrCost),
-                        2000,
-                        //taxlayman uyga borib
+                        Integer.parseInt(keladigan_narx),
                         Integer.parseInt(karobkada_soni),
                         Integer.parseInt(qolgan_astatka)
 

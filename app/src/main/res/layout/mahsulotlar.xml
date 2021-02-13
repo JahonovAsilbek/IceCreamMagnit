@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:layout_height="match_parent"
     tools:context=".mahsulotlar.MahsulotlarFragment">
@@ -9,7 +10,23 @@
     <androidx.recyclerview.widget.RecyclerView
         tools:listitem="@layout/product_item"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mahsulot_share_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/product_recycler_view"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"/>
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/product_recycler_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/toolbar_color"
+        android:text="Ma'lumotlarni jo'natish"
+        android:layout_margin="8dp"
+        android:id="@+id/mahsulot_share_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

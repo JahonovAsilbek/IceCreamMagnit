@@ -1,8 +1,10 @@
 package uz.revolution.icecreammagnit.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -11,12 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
+import kotlinx.android.synthetic.main.item_bottomsheet.view.*
 import kotlinx.android.synthetic.main.mahsulotlar.view.*
+import kotlinx.android.synthetic.main.product_item.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
 import uz.revolution.icecreammagnit.models.Product
 import uz.revolution.icecreammagnit.models.Supplier
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MahsulotlarFragment : Fragment() {
 
@@ -26,12 +33,14 @@ class MahsulotlarFragment : Fragment() {
     lateinit var suppliertList: List<Supplier>
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
+    var productsStr: String = ""
+    var umumiy_qolgan_soni = 0
 
     fun loadData() {
         productList = ArrayList()
 
         productList = getMagnitDao?.getProductList()!!
-        suppliertList=getMagnitDao.getAllSuppliers()
+        suppliertList = getMagnitDao.getAllSuppliers()
 
         productAdapter = ProductAdapter(productList, suppliertList)
     }
@@ -50,9 +59,31 @@ class MahsulotlarFragment : Fragment() {
         root = inflater.inflate(R.layout.mahsulotlar, container, false)
         root.product_recycler_view.adapter = productAdapter
         root.product_recycler_view.layoutManager = LinearLayoutManager(container?.context)
+        loadmyStr()
+        Log.d("TTTT", "onCreateView: $umumiy_qolgan_soni")
+        root.mahsulot_share_btn.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Mahsulotlar | "+getCurrentDate()+"\n\n"+productsStr+"\n\nJami karobka soni: "+umumiy_qolgan_soni
+                )
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
         loadSwipeFun()
 
         return root
+    }
+
+    private fun loadmyStr() {
+        for (i in 0 until productList.size) {
+            productsStr +=productList[i].name+"   ->  "+productList[i].balance+"\n"
+
+            umumiy_qolgan_soni += productList[i].balance
+        }
     }
 
     private fun loadSwipeFun() {
@@ -127,6 +158,10 @@ class MahsulotlarFragment : Fragment() {
         }
         return true
     }
-
+    private fun getCurrentDate(): String {
+        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
+        val currentDateAndTime: String = simpleDateFormat.format(Date())
+        return currentDateAndTime
+    }
 
 }

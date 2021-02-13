@@ -47,6 +47,7 @@ class EditProductFragment : Fragment() {
         root.edit_product_mahsulot_narxi.setText(product?.costDriver.toString())
         root.edit_product_mahsulot_mijoz_uchun_narx.setText(product?.costCustomer.toString())
         root.edit_product_mahsulot_astakasi.setText(product?.balance.toString())
+        root.edit_product_mahsulot_keladigan_narx.setText(product?.receivedCost.toString())
         root.edit_product_mahsulot_karobkada_soni.setText(product?.totalBox.toString())
         root.edit_product_spinner.setSelection(product?.supplierID!!-1)
 
@@ -58,17 +59,16 @@ class EditProductFragment : Fragment() {
             var qolgan_astatka = root.edit_product_mahsulot_astakasi.text.toString().trim()
             var karobkada_soni = root.edit_product_mahsulot_karobkada_soni.text.toString().trim()
             var taminotchi_id = supplierList[root.edit_product_spinner.selectedItemPosition].supplierID
+            var keladigan_narx=root.edit_product_mahsulot_keladigan_narx.text.toString().trim()
 
-            if (productName != "" && productDrCost != "" && productMijozCost != "" && qolgan_astatka != "" && karobkada_soni != "") {
-
+            if (productName != "" && productDrCost != ""&&keladigan_narx!="" && productMijozCost != "" && qolgan_astatka != "" && karobkada_soni != "") {
 
                 getMagnitDao?.updateProduct(
                     taminotchi_id,
                     productName,
                     Integer.parseInt(productMijozCost),
                     Integer.parseInt(productDrCost),
-                    1800,
-                    //berayam qilinaykon ishi bo
+                    Integer.parseInt(keladigan_narx),
                     Integer.parseInt(karobkada_soni),
                     Integer.parseInt(qolgan_astatka),
                     product?.id!!

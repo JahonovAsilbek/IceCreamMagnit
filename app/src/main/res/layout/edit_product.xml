@@ -123,6 +123,30 @@
                     app:boxStrokeColor="#03A9F4"
                     app:helperTextTextColor="#03A9F4"
                     app:errorEnabled="true"
+                    android:textColorHint="@android:color/black"
+                    app:errorTextColor="#ff0000"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Kirib keladigan narx"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:maxLines="20"
+                        android:id="@+id/edit_product_mahsulot_keladigan_narx"
+                        android:inputType="number"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:layout_height="50dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    app:hintTextColor="#03A9F4"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="#03A9F4"
+                    app:helperTextTextColor="#03A9F4"
+                    app:errorEnabled="true"
                     app:errorTextColor="#ff0000"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:hint="Karobkada soni"
