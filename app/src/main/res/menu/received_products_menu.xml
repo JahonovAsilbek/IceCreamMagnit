@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/show_suppliers"
-        android:icon="@android:drawable/checkbox_on_background"
+        android:icon="@drawable/ic_baseline_add_24"
         android:title="Ta'minotchini tanlang"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>
