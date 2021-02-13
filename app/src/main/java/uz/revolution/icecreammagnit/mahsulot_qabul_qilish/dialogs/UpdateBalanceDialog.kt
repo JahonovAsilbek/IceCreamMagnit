@@ -1,9 +1,11 @@
 package uz.revolution.icecreammagnit.mahsulot_qabul_qilish.dialogs
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.update_balance_dialog.view.*
@@ -33,6 +35,8 @@ class UpdateBalanceDialog : DialogFragment() {
         root = inflater.inflate(R.layout.update_balance_dialog, container, false)
         dialog?.requestWindowFeature(STYLE_NORMAL)
         isCancelable = false
+        root.update_balance_et.requestFocus()
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         root.update_balance_btn.setOnClickListener {
             if (root.update_balance_et.text.toString().trim().isNotEmpty()) {

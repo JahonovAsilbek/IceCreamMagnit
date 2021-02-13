@@ -19,7 +19,11 @@
         android:id="@+id/mijozlarFragment"
         android:name="uz.revolution.icecreammagnit.mijozlar.MijozlarFragment"
         android:label="Mijozlar"
-        tools:layout="@layout/mijozlar" />
+        tools:layout="@layout/mijozlar" >
+        <action
+            android:id="@+id/action_mijozlarFragment_to_customerFragment"
+            app:destination="@id/customerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mahsulot_q_qilishFragment"
         android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.Mahsulot_q_qilishFragment"
@@ -82,4 +86,9 @@
         android:name="uz.revolution.icecreammagnit.mahsulot_qabul_qilish.dialogs.UpdateBalanceDialog"
         android:label="fragment_update_balance_dialog"
         tools:layout="@layout/update_balance_dialog" />
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="uz.revolution.icecreammagnit.mijozlar.CustomerItemFragment"
+        android:label="Mijozlar"
+        tools:layout="@layout/fragment_customer" />
 </navigation>

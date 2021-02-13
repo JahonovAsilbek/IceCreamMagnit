@@ -1,22 +1,26 @@
 package uz.revolution.icecreammagnit.mijozlar
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.mahsulot_q_qilish.view.*
+import kotlinx.android.synthetic.main.mijozlar.view.*
+import kotlinx.android.synthetic.main.tab_item.view.*
 import uz.revolution.icecreammagnit.R
+import uz.revolution.icecreammagnit.daos.MagnitDao
+import uz.revolution.icecreammagnit.database.AppDatabase
+import uz.revolution.icecreammagnit.mijozlar.adapters.CategoryAdapter
+import uz.revolution.icecreammagnit.models.Customer
+import uz.revolution.icecreammagnit.models.CustomerTemporary
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MijozlarFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class MijozlarFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -30,31 +34,72 @@ class MijozlarFragment : Fragment() {
         }
     }
 
+    lateinit var root:View
+    lateinit var customerList: ArrayList<Category>
+    var database:AppDatabase?=null
+    var magnitDao:MagnitDao?=null
+    lateinit var adapter:CategoryAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.mijozlar, container, false)
+    ): View {
+        root = inflater.inflate(R.layout.mijozlar, container, false)
+        database=AppDatabase.get.getDatabase()
+        magnitDao=database!!.getProductDao()
+
+        loadData()
+        adapter = CategoryAdapter(customerList,childFragmentManager)
+        root.customer_vp.adapter = adapter
+        root.customer_tab_layout.setupWithViewPager(root.customer_vp)
+
+        setTabs()
+
+        root.received_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("ResourceAsColor")
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val customView = tab?.customView
+                customView?.circle_layout?.visibility = View.VISIBLE
+                customView?.title_tv?.setTextColor(resources.getColor(R.color.white))
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                val customView = tab?.customView
+                customView?.circle_layout?.visibility = View.INVISIBLE
+                customView?.title_tv?.setTextColor(resources.getColor(R.color.black))
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+        })
+
+        return root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MijozlarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MijozlarFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun loadData() {
+        customerList = ArrayList()
+        customerList.add(Category("1",magnitDao!!.getCustomerBySerialNumber(1) as ArrayList))
+        customerList.add(Category("2",magnitDao!!.getCustomerBySerialNumber(2) as ArrayList))
+    }
+    inner class Category(var title:String,var arrayList:ArrayList<Customer>)
+
+    private fun setTabs() {
+        val tabCount = root.received_tab_layout.tabCount
+
+        for (i in 0 until tabCount) {
+            val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
+            val tab = root.received_tab_layout.getTabAt(i)
+            tab?.customView = tabView
+            tabView.title_tv.text = customerList[i].title
+
+            if (i == 0) {
+                tabView.circle_layout.visibility = View.VISIBLE
+                tabView?.title_tv?.setTextColor(resources.getColor(R.color.white))
+            } else {
+                tabView.circle_layout.visibility = View.INVISIBLE
+                tabView?.title_tv?.setTextColor(resources.getColor(R.color.black))
             }
+        }
     }
 }
