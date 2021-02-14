@@ -90,5 +90,32 @@
         android:id="@+id/customerFragment"
         android:name="uz.revolution.icecreammagnit.mijozlar.CustomerItemFragment"
         android:label="Mijozlar"
-        tools:layout="@layout/fragment_customer" />
+        tools:layout="@layout/fragment_customer" >
+        <action
+            android:id="@+id/action_customerFragment_to_customerTemporaryFragment"
+            app:destination="@id/customerTemporaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerTemporaryFragment"
+        android:name="uz.revolution.icecreammagnit.mijozlar.CustomerTemporaryFragment"
+        android:label="customer_temporary"
+        tools:layout="@layout/customer_temporary" >
+        <action
+            android:id="@+id/action_customerTemporaryFragment_to_chooseProductCustomer"
+            app:destination="@id/chooseProductCustomer" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseProductCustomer"
+        android:name="uz.revolution.icecreammagnit.mijozlar.ChooseProductCustomer"
+        android:label="Mahsulot tanlang"
+        tools:layout="@layout/choose_product_customer" >
+        <action
+            android:id="@+id/action_chooseProductCustomer_to_customerSetBoxDialog"
+            app:destination="@id/customerSetBoxDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerSetBoxDialog"
+        android:name="uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerSetBoxDialog"
+        android:label="fragment_customer_set_box_dialog"
+        tools:layout="@layout/fragment_customer_set_box_dialog" />
 </navigation>

@@ -32,30 +32,63 @@ class MijozlarFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        database=AppDatabase.get.getDatabase()
+        magnitDao=database!!.getProductDao()
+        adapter = CategoryAdapter(childFragmentManager)
     }
 
     lateinit var root:View
     lateinit var customerList: ArrayList<Category>
-    var database:AppDatabase?=null
-    var magnitDao:MagnitDao?=null
     lateinit var adapter:CategoryAdapter
+    private var database:AppDatabase?=null
+    private var magnitDao:MagnitDao?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         root = inflater.inflate(R.layout.mijozlar, container, false)
-        database=AppDatabase.get.getDatabase()
-        magnitDao=database!!.getProductDao()
 
         loadData()
-        adapter = CategoryAdapter(customerList,childFragmentManager)
+        loadAdapter()
+        setTabs()
+        return root
+    }
+
+    private fun loadAdapter() {
+        adapter.setCategoryAdapter(customerList)
         root.customer_vp.adapter = adapter
         root.customer_tab_layout.setupWithViewPager(root.customer_vp)
+        adapter.notifyDataSetChanged()
+    }
 
-        setTabs()
+    private fun loadData() {
+        customerList = ArrayList()
+        customerList.add(Category("Bahrom aka(Shofirkon)",magnitDao!!.getCustomerBySerialNumber(1) as ArrayList))
+        customerList.add(Category("Boshqalar",magnitDao!!.getCustomerBySerialNumber(2) as ArrayList))
+    }
 
-        root.received_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+    inner class Category(var title:String,var arrayList:ArrayList<Customer>)
+
+    private fun setTabs() {
+        val tabCount = root.customer_tab_layout.tabCount
+
+        for (i in 0 until tabCount) {
+            val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
+            val tab = root.customer_tab_layout.getTabAt(i)
+            tab?.customView = tabView
+            tabView.title_tv.text = customerList[i].title
+
+            if (i == 0) {
+                tabView.circle_layout.visibility = View.VISIBLE
+                tabView?.title_tv?.setTextColor(resources.getColor(R.color.white))
+            } else {
+                tabView.circle_layout.visibility = View.INVISIBLE
+                tabView?.title_tv?.setTextColor(resources.getColor(R.color.black))
+            }
+        }
+
+        root.customer_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             @SuppressLint("ResourceAsColor")
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val customView = tab?.customView
@@ -73,33 +106,5 @@ class MijozlarFragment : Fragment() {
 
             }
         })
-
-        return root
-    }
-
-    private fun loadData() {
-        customerList = ArrayList()
-        customerList.add(Category("1",magnitDao!!.getCustomerBySerialNumber(1) as ArrayList))
-        customerList.add(Category("2",magnitDao!!.getCustomerBySerialNumber(2) as ArrayList))
-    }
-    inner class Category(var title:String,var arrayList:ArrayList<Customer>)
-
-    private fun setTabs() {
-        val tabCount = root.received_tab_layout.tabCount
-
-        for (i in 0 until tabCount) {
-            val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
-            val tab = root.received_tab_layout.getTabAt(i)
-            tab?.customView = tabView
-            tabView.title_tv.text = customerList[i].title
-
-            if (i == 0) {
-                tabView.circle_layout.visibility = View.VISIBLE
-                tabView?.title_tv?.setTextColor(resources.getColor(R.color.white))
-            } else {
-                tabView.circle_layout.visibility = View.INVISIBLE
-                tabView?.title_tv?.setTextColor(resources.getColor(R.color.black))
-            }
-        }
     }
 }

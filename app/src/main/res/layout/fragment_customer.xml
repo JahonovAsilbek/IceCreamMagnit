@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".mijozlar.CustomerItemFragment">
@@ -9,6 +10,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/rv"
+        tools:listitem="@layout/item_received"
         app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/set_new"
@@ -23,7 +25,7 @@
         android:background="@drawable/btn_back"
         android:text="Yangi qo'shish"
         android:textAllCaps="false"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

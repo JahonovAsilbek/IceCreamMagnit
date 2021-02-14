@@ -4,17 +4,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_received.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.Customer
 
-class CustomerAdapter(var customerList: ArrayList<Customer>) :
+class CustomerAdapter() :
     RecyclerView.Adapter<CustomerAdapter.VH>() {
+
+    private var onItemClick:OnItemClick?=null
+    private var customerList:ArrayList<Customer>?=null
+
+    fun setAdapter(customerList: ArrayList<Customer>) {
+        this.customerList=customerList
+    }
 
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(customer: Customer) {
-            
-        }
+            itemView.date.text = "Sana: ${customer.date}"
+            itemView.received_cash.text = "Mijozdan olingan summa: ${customer.receivedCash.toString()}"
+            itemView.total_cash.text="Mahsulotlar summasi: ${customer.givenCash.toString()}"
 
+            itemView.setOnClickListener {
+                if (onItemClick != null) {
+                    onItemClick!!.onClick(customer)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -24,8 +39,16 @@ class CustomerAdapter(var customerList: ArrayList<Customer>) :
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
+        holder.onBind(customerList!![position])
     }
 
-    override fun getItemCount(): Int = customerList.size
+    override fun getItemCount(): Int = customerList!!.size
+
+    interface OnItemClick{
+        fun onClick(customer: Customer)
+    }
+
+    fun setOnItemClick(onItemClick: OnItemClick) {
+        this.onItemClick=onItemClick
+    }
 }

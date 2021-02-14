@@ -8,7 +8,6 @@ import uz.revolution.icecreammagnit.mijozlar.CustomerItemFragment
 import uz.revolution.icecreammagnit.mijozlar.MijozlarFragment
 
 class CategoryAdapter(
-    var customerList: ArrayList<MijozlarFragment.Category>,
     fragmentManager: FragmentManager
 ) :
     FragmentStatePagerAdapter(
@@ -16,15 +15,20 @@ class CategoryAdapter(
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
     ) {
 
-    override fun getCount(): Int = customerList.size
+    private var customerList: ArrayList<MijozlarFragment.Category>?=null
+
+    fun setCategoryAdapter(customerList: ArrayList<MijozlarFragment.Category>) {
+        this.customerList=customerList
+    }
+
+    override fun getCount(): Int = customerList!!.size
 
     override fun getItem(position: Int): Fragment {
         val bundle = Bundle()
-        bundle.putSerializable("customer", customerList[position].arrayList)
+        bundle.putSerializable("customer", customerList!![position].arrayList)
+        bundle.putInt("customerID", position + 1)
         val fragment = CustomerItemFragment()
         fragment.arguments = bundle
         return fragment
     }
-
-
 }

@@ -19,8 +19,8 @@ class CustomerTemporary : Serializable {
     @ColumnInfo(name = "name")
     var name: String? = null
 
-    @ColumnInfo(name = "productCost")
-    var productCost: Int = 0
+    @ColumnInfo(name = "product_cost")
+    var mahsulotlarSummasi: Int = 0
 
     @ColumnInfo(name = "cost")
     var customerCost:Int=0
@@ -34,10 +34,10 @@ class CustomerTemporary : Serializable {
     constructor()
 
     @Ignore
-    constructor(customerID:Int,name:String,productCost:Int,customerCost:Int,box:Int,karobkadaSoni:Int){
+    constructor(customerID:Int,name:String,mahsulotlarSummasi:Int,customerCost:Int,box:Int,karobkadaSoni:Int){
         this.customerID=customerID
         this.name=name
-        this.productCost=productCost
+        this.mahsulotlarSummasi=mahsulotlarSummasi
         this.customerCost=customerCost
         this.box=box
         this.karobkadaSoni=karobkadaSoni
@@ -51,7 +51,7 @@ class CustomerTemporary : Serializable {
     mahsulot summasi
     karobka soni
     karobkada soni
-    narxi(cusoomer cost)
+    narxi(customer cost)
 
      */
 }

@@ -32,8 +32,11 @@ interface MagnitDao {
         id: Int
     )
 
-    @Query("UPDATE products SET balance=:balance+balance WHERE id=:id")
+    @Query("UPDATE products SET balance=balance+:balance WHERE id=:id")
     fun addBalance(balance: Int, id: Int)
+
+    @Query("UPDATE products SET balance=balance-:balance WHERE id=:id")
+    fun subtractBalance(balance: Int,id: Int)
 
     @Delete
     fun deleteProduct(product: Product)
@@ -46,6 +49,9 @@ interface MagnitDao {
 
     @Query("SELECT * FROM products WHERE id=:id")
     fun getProductByID(id: Int): Product
+
+    @Query("SELECT * FROM products WHERE name=:name")
+    fun getProductByName(name: String):Product
 
     /*
     *
@@ -257,11 +263,20 @@ interface MagnitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCustomerTemporary(customerTemporary: CustomerTemporary)
 
+    @Query("UPDATE customer_temporary SET name=:name,product_cost=:productCost,cost=:cost,box=:box,karobkada_soni=:karobkadaSoni WHERE id=:id")
+    fun updateCustomerTemporaryByCustomerID(name: String,productCost:Int,cost:Int,box:Int,karobkadaSoni:Int,id:Int)
+
     @Query("SELECT * FROM customer_temporary")
     fun getAllCustomerTemporary(): List<CustomerTemporary>
 
     @Query("SELECT * FROM customer_temporary WHERE customer_id=:customerID")
     fun getCustomerTemporaryByCustomerID(customerID: Int): List<CustomerTemporary>
+
+    @Delete
+    fun deleteCustomerTemporary(customerTemporary: CustomerTemporary)
+
+    @Query("DELETE FROM customer_temporary")
+    fun deleteAllCustomerTemporary()
 
     /*
    *
