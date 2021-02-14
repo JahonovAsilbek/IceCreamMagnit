@@ -39,7 +39,7 @@ class DriverItemFragment : Fragment() {
         val allList=getMagnitDao?.getAllDriver()!!
         var myList = ArrayList<Driver>()
         for (i in 0 until allList.size) {
-            if (allList[i].serialNumber == param1!! + 1) {
+            if (allList[i].serialNumber == (param1!! + 1)) {
                 myList.add(allList[i])
             }
         }
