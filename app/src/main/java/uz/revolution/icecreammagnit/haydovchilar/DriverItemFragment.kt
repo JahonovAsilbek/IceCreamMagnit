@@ -75,7 +75,7 @@ class DriverItemFragment : Fragment() {
             olinganString=olinganString.substring(0,6)+" "+olinganString.substring(6)
 
 
-            var myDialog = BottomSheetDialog(root.context)
+            var myDialog = BottomSheetDialog(root.context,R.style.SheetDialog)
             var dialogView=LayoutInflater.from(root.context).inflate(R.layout.driver_hisobot_bottom_dialog,null,false)
             dialogView.date.text="Haydovchi ${param1!!+1} | Umumiy hisobot"
             dialogView.given_cash.text = "Berilgan tovarlar: ${berilganString.reversed()}"

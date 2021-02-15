@@ -1,11 +1,11 @@
 package uz.revolution.icecreammagnit.magnit
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.choose_product_magnit.view.*
@@ -14,7 +14,6 @@ import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mijozlar.adapters.ChooseProductCustomerAdapter
 import uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerSetBoxDialog
-import uz.revolution.icecreammagnit.models.CustomerTemporary
 import uz.revolution.icecreammagnit.models.MagnitTemporary
 import uz.revolution.icecreammagnit.models.Product
 
@@ -34,14 +33,14 @@ class ChooseProductMagnit : Fragment() {
         }
         database = AppDatabase.get.getDatabase()
         magnitDao = database!!.getProductDao()
-        adapter= ChooseProductCustomerAdapter()
+        adapter = ChooseProductCustomerAdapter("mijoz")
     }
 
-    lateinit var root:View
-    private var productList:ArrayList<Product>?=null
-    private var database:AppDatabase?=null
-    private var magnitDao: MagnitDao?=null
-    private var adapter:ChooseProductCustomerAdapter?=null
+    lateinit var root: View
+    private var productList: ArrayList<Product>? = null
+    private var database: AppDatabase? = null
+    private var magnitDao: MagnitDao? = null
+    private var adapter: ChooseProductCustomerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -97,13 +96,13 @@ class ChooseProductMagnit : Fragment() {
 
     private fun loadAdapters() {
         adapter?.setAdapter(productList!!)
-        root.choose_product_rv.adapter=adapter
+        root.choose_product_rv.adapter = adapter
         adapter?.notifyDataSetChanged()
     }
 
     private fun loadData() {
         productList = ArrayList()
-        productList=magnitDao?.getProductList() as ArrayList
+        productList = magnitDao?.getProductList() as ArrayList
     }
 
 }
