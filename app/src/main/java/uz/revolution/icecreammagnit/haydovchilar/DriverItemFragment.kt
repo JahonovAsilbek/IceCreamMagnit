@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_driver_item.view.*
 import uz.revolution.icecreammagnit.R
@@ -43,10 +44,15 @@ class DriverItemFragment : Fragment() {
                 myList.add(allList[i])
             }
         }
+        var bundle = Bundle()
+        bundle.putInt("param1",(param1!!+1))
         root = inflater.inflate(R.layout.fragment_driver_item, container, false)
         var driverItemAdapter = DriverItemAdapter(myList)
         root.driver_item_recyclerview.layoutManager=LinearLayoutManager(this.context)
         root.driver_item_recyclerview.adapter=driverItemAdapter
+        root.driver_item_yagi_qoshish_btn.setOnClickListener {
+            findNavController().navigate(R.id.driverTemporaryFragment,bundle)
+        }
         return root
     }
 

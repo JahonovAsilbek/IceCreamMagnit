@@ -9,7 +9,11 @@
         android:id="@+id/haydovchiFragment"
         android:name="uz.revolution.icecreammagnit.haydovchilar.HaydovchiFragment"
         android:label="Haydovchilar"
-        tools:layout="@layout/haydovchi" />
+        tools:layout="@layout/haydovchi" >
+        <action
+            android:id="@+id/action_haydovchiFragment_to_driverItemFragment"
+            app:destination="@id/driverItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/magnitFragment"
         android:name="uz.revolution.icecreammagnit.magnit.MagnitFragment"
@@ -118,4 +122,30 @@
         android:name="uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerSetBoxDialog"
         android:label="fragment_customer_set_box_dialog"
         tools:layout="@layout/fragment_customer_set_box_dialog" />
+    <fragment
+        android:id="@+id/driverItemFragment"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.DriverItemFragment"
+        android:label="fragment_driver_item"
+        tools:layout="@layout/fragment_driver_item" >
+        <action
+            android:id="@+id/action_driverItemFragment_to_driverTemporaryFragment"
+            app:destination="@id/driverTemporaryFragment" />
+        <action
+            android:id="@+id/action_driverItemFragment_to_driverTemporaryFragment2"
+            app:destination="@id/driverTemporaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverTemporaryFragment"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.DriverTemporaryFragment"
+        android:label="Haydovchi"
+        tools:layout="@layout/fragment_driver_temporary" >
+        <action
+            android:id="@+id/action_driverTemporaryFragment_to_driverChooseProductFragment"
+            app:destination="@id/driverChooseProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverChooseProductFragment"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.DriverChooseProductFragment"
+        android:label="Mahsulot tanlash"
+        tools:layout="@layout/fragment_driver_choose_product" />
 </navigation>

@@ -13,6 +13,7 @@ import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.haydovchilar.adapters.DriverViewPagerAdapter
 import uz.revolution.icecreammagnit.models.Driver
+import uz.revolution.icecreammagnit.models.Temporary
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -106,9 +107,4 @@ class HaydovchiFragment : Fragment() {
         }
     }
 
-    private fun loadData() {
-        getMagnitDao?.insertDriver(Driver(1, "15.02.2021", "Rosiii", 120, 1200000, 1000000))
-        getMagnitDao?.insertDriver(Driver(1, "19.02.2021", "Xay bir gap bo'lar", 120, 1200000, 1000000))
-        getMagnitDao?.insertDriver(Driver(2, "18.02.2021", "Wifi", 2000, 1200000, 1000000))
-    }
 }
