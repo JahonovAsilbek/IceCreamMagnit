@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_customer_temporary.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.CustomerTemporary
 
-class CustomerTemporaryAdapter():RecyclerView.Adapter<CustomerTemporaryAdapter.VH>() {
+class CustomerTemporaryAdapter :RecyclerView.Adapter<CustomerTemporaryAdapter.VH>() {
 
     private var onLongClick:OnLongClick?=null
     private var customerTemporaryList:ArrayList<CustomerTemporary>?=null

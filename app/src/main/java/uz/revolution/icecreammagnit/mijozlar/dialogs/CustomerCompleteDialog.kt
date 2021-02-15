@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.fragment_customer_complete_dialog.view.*
+import kotlinx.android.synthetic.main.fragment_customer_complete_dialog.view.tv
+import kotlinx.android.synthetic.main.fragment_customer_edit.view.*
 import uz.revolution.icecreammagnit.R
 
 private const val ARG_PARAM1 = "param1"
@@ -33,6 +36,10 @@ class CustomerCompleteDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         root = inflater.inflate(R.layout.fragment_customer_complete_dialog, container, false)
+        dialog?.requestWindowFeature(STYLE_NORMAL)
+        isCancelable = false
+        root.complete_et.requestFocus()
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         loadDataToView()
         onOkClick()

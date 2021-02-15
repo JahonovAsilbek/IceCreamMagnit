@@ -46,7 +46,7 @@ class ReceivedProductFragment : Fragment() {
                 view.given_cash.text = "Berilgan summa:  ${receivedProducts.givenCash}"
                 view.received_cash.text = "Ja'mi summa:  ${receivedProducts.receivedCash}"
                 view.products.text = "Tovarlar: \n${receivedProducts.product}"
-                view.total_box.text = "Ja'mi karobka:  ${receivedProducts.totalBox.toString()}"
+                view.total_box.text = "Ja'mi karobka:  ${receivedProducts.totalBox}"
 
                 view.share.setOnClickListener {
                     val sendIntent: Intent = Intent().apply {

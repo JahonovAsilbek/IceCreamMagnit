@@ -10,7 +10,7 @@ import uz.revolution.icecreammagnit.mijozlar.adapters.CustomerTemporaryAdapter
 import uz.revolution.icecreammagnit.models.CustomerTemporary
 import uz.revolution.icecreammagnit.models.Temporary
 
-class DrTemporaryAdapter() :
+class DrTemporaryAdapter :
     RecyclerView.Adapter<DrTemporaryAdapter.Vh>() {
 
     private var onLongClick: OnLongClick?=null

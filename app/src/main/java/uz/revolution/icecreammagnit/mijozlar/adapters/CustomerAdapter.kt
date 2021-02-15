@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_received.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.Customer
 
-class CustomerAdapter() :
+class CustomerAdapter :
     RecyclerView.Adapter<CustomerAdapter.VH>() {
 
     private var onItemClick:OnItemClick?=null
@@ -21,8 +21,8 @@ class CustomerAdapter() :
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(customer: Customer) {
             itemView.date.text = "Sana: ${customer.date}"
-            itemView.received_cash.text = "Mijozdan olingan summa: ${customer.receivedCash.toString()}"
-            itemView.total_cash.text="Mahsulotlar summasi: ${customer.givenCash.toString()}"
+            itemView.received_cash.text = "Mijozdan olingan summa: ${customer.receivedCash}"
+            itemView.total_cash.text="Mahsulotlar summasi: ${customer.givenCash}"
 
             itemView.setOnClickListener {
                 if (onItemClick != null) {

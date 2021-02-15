@@ -13,12 +13,28 @@
         <action
             android:id="@+id/action_haydovchiFragment_to_driverItemFragment"
             app:destination="@id/driverItemFragment" />
+        <action
+            android:id="@+id/action_haydovchiFragment_to_mahsulotlarFragment"
+            app:destination="@id/mahsulotlarFragment" />
+        <action
+            android:id="@+id/action_haydovchiFragment_to_magnitFragment"
+            app:destination="@id/magnitFragment" />
+        <action
+            android:id="@+id/action_haydovchiFragment_to_mijozlarFragment"
+            app:destination="@id/mijozlarFragment" />
+        <action
+            android:id="@+id/action_haydovchiFragment_self"
+            app:destination="@id/haydovchiFragment" />
     </fragment>
     <fragment
         android:id="@+id/magnitFragment"
         android:name="uz.revolution.icecreammagnit.magnit.MagnitFragment"
         android:label="Magnit market"
-        tools:layout="@layout/magnit" />
+        tools:layout="@layout/magnit" >
+        <action
+            android:id="@+id/action_magnitFragment_to_magnitTemporaryFragment"
+            app:destination="@id/magnitTemporaryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mijozlarFragment"
         android:name="uz.revolution.icecreammagnit.mijozlar.MijozlarFragment"
@@ -107,6 +123,12 @@
         <action
             android:id="@+id/action_customerTemporaryFragment_to_chooseProductCustomer"
             app:destination="@id/chooseProductCustomer" />
+        <action
+            android:id="@+id/action_customerTemporaryFragment_to_customerEditDialog"
+            app:destination="@id/customerEditDialog" />
+        <action
+            android:id="@+id/action_customerTemporaryFragment_to_customerCompleteDialog"
+            app:destination="@id/customerCompleteDialog" />
     </fragment>
     <fragment
         android:id="@+id/chooseProductCustomer"
@@ -142,10 +164,51 @@
         <action
             android:id="@+id/action_driverTemporaryFragment_to_driverChooseProductFragment"
             app:destination="@id/driverChooseProductFragment" />
+        <action
+            android:id="@+id/action_driverTemporaryFragment_to_drTemporaryEditDialog"
+            app:destination="@id/drTemporaryEditDialog" />
+        <action
+            android:id="@+id/action_driverTemporaryFragment_to_driverCompleteDialog"
+            app:destination="@id/driverCompleteDialog" />
     </fragment>
     <fragment
         android:id="@+id/driverChooseProductFragment"
         android:name="uz.revolution.icecreammagnit.haydovchilar.DriverChooseProductFragment"
         android:label="Mahsulot tanlash"
         tools:layout="@layout/fragment_driver_choose_product" />
+    <fragment
+        android:id="@+id/customerEditDialog"
+        android:name="uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerEditDialog"
+        android:label="CustomerEditDialog" />
+    <fragment
+        android:id="@+id/customerCompleteDialog"
+        android:name="uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerCompleteDialog"
+        android:label="fragment_customer_complete_dialog"
+        tools:layout="@layout/fragment_customer_complete_dialog" />
+    <fragment
+        android:id="@+id/magnitTemporaryFragment"
+        android:name="uz.revolution.icecreammagnit.magnit.MagnitTemporaryFragment"
+        android:label="Magnit"
+        tools:layout="@layout/magnit_temporary" >
+        <action
+            android:id="@+id/action_magnitTemporaryFragment_to_chooseProductMagnit"
+            app:destination="@id/chooseProductMagnit" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseProductMagnit"
+        android:name="uz.revolution.icecreammagnit.magnit.ChooseProductMagnit"
+        android:label="Mahsulot tanlang"
+        tools:layout="@layout/choose_product_magnit" >
+        <action
+            android:id="@+id/action_chooseProductMagnit_to_customerSetBoxDialog"
+            app:destination="@id/customerSetBoxDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/drTemporaryEditDialog"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.dialogs.DrTemporaryEditDialog"
+        android:label="DrTemporaryEditDialog" />
+    <dialog
+        android:id="@+id/driverCompleteDialog"
+        android:name="uz.revolution.icecreammagnit.haydovchilar.dialogs.DriverCompleteDialog"
+        android:label="DriverCompleteDialog" />
 </navigation>

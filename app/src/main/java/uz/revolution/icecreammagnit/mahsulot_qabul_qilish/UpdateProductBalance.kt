@@ -106,7 +106,7 @@ class UpdateProductBalanceFragment : Fragment() {
                             ReceivedProducts(
                                 supplierID,
                                 getCurrentDate(),
-                                productsStr!!,
+                                productsStr,
                                 totalbox,
                                 givenCash,
                                 receivedCash

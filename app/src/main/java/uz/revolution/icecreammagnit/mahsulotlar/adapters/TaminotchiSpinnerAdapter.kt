@@ -23,7 +23,7 @@ class TaminotchiSpinnerAdapter(var list:List<Supplier>):BaseAdapter() {
         } else {
             view=convertView
         }
-        view.taminotchi_spinner_item.setText(list[position].name)
+        view.taminotchi_spinner_item.text = list[position].name
         return view
     }
 }

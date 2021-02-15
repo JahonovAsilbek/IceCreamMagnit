@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_bottomsheet.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.Driver
 
-class DriverItemAdapter() : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
+class DriverItemAdapter : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
 
     private var driverList:ArrayList<Driver>?=null
 
@@ -36,7 +36,7 @@ class DriverItemAdapter() : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
                 view.given_cash.text = "Berilgan tovarlar summasi:  ${driver.givenCash}"
                 view.received_cash.text = "Olingan summa:  ${driver.receivedCash}"
                 view.products.text = "Tovarlar: ${driver.product}"
-                view.total_box.text = "Jami karobka:  ${driver.totalBox.toString()}"
+                view.total_box.text = "Jami karobka:  ${driver.totalBox}"
 
                 view.share.setOnClickListener {
                     val sendIntent: Intent = Intent().apply {

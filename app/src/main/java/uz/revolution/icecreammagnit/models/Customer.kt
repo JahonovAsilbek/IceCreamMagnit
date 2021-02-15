@@ -48,5 +48,5 @@ class Customer : Serializable {
         this.receivedCash = receivedCash
     }
 
-    public constructor()
+    constructor()
 }
