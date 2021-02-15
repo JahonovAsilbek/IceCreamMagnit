@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.driver_hisobot_bottom_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_driver_item.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.daos.MagnitDao
@@ -54,6 +57,33 @@ class DriverItemFragment : Fragment() {
 
         root.driver_item_yagi_qoshish_btn.setOnClickListener {
             findNavController().navigate(R.id.driverTemporaryFragment,bundle)
+        }
+        root.driver_item_info.setOnClickListener {
+            var berilgan_tovarlar = 0
+            var olingan_summa = 0
+            var jami_karobka=0
+            for (i in 0 until myList!!.size) {
+                berilgan_tovarlar += myList!![i].givenCash
+                olingan_summa+=myList!![i].receivedCash
+                jami_karobka += myList!![i].totalBox
+            }
+            var farq=berilgan_tovarlar-olingan_summa
+
+            var berilganString = berilgan_tovarlar.toString().reversed()
+            var olinganString = olingan_summa.toString().reversed()
+            berilganString = berilganString.substring(0, 6) + " " + berilganString.substring(6)
+            olinganString=olinganString.substring(0,6)+" "+olinganString.substring(6)
+
+
+            var myDialog = BottomSheetDialog(root.context)
+            var dialogView=LayoutInflater.from(root.context).inflate(R.layout.driver_hisobot_bottom_dialog,null,false)
+            dialogView.date.text="Haydovchi ${param1!!+1} | Umumiy hisobot"
+            dialogView.given_cash.text = "Berilgan tovarlar: ${berilganString.reversed()}"
+            dialogView.received_cash.text="Olingan summa: ${olinganString.reversed()}"
+            dialogView.total_box.text="Jami karobka: $jami_karobka"
+            dialogView.farq.text="Farq: $farq"
+            myDialog.setContentView(dialogView)
+            myDialog.show()
         }
         return root
     }

@@ -30,7 +30,7 @@ class DriverChooseProductFragment : Fragment() {
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
 
-    var drChoosePrAdapter=ChooseProductCustomerAdapter()
+    var drChoosePrAdapter=ChooseProductCustomerAdapter("driver")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

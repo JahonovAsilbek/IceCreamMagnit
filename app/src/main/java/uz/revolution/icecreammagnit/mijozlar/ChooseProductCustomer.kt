@@ -37,7 +37,7 @@ class ChooseProductCustomer : Fragment() {
         Log.d("AAAA", "ChooseProductCustomer id: $param1")
         database = AppDatabase.get.getDatabase()
         magnitDao = database!!.getProductDao()
-        adapter = ChooseProductCustomerAdapter()
+        adapter = ChooseProductCustomerAdapter("mijoz")
     }
 
     lateinit var root: View

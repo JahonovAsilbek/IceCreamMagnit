@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_choose_customer_product.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.Product
 
-class ChooseProductCustomerAdapter() :
+class ChooseProductCustomerAdapter(var text:String) :
     RecyclerView.Adapter<ChooseProductCustomerAdapter.VH>() {
 
     private var productList:ArrayList<Product>?=null
@@ -23,7 +23,12 @@ class ChooseProductCustomerAdapter() :
         fun onBind(product: Product,position: Int) {
             itemView.product_name.text = product.name
             itemView.balance.text = "Bazada soni: ${product.balance}"
-            itemView.customer_cost.text = "Narxi: ${product.costCustomer}"
+            if (text == "mijoz") {
+                itemView.customer_cost.text = "Narxi: ${product.costCustomer}"
+            } else if (text == "driver") {
+
+                itemView.customer_cost.text = "Narxi: ${product.costDriver}"
+            }
             itemView.karobkada_soni.text = "Karobkada soni: ${product.totalBox} ta"
 
             itemView.setOnClickListener {

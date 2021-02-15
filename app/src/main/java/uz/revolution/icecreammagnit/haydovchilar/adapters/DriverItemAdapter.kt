@@ -23,9 +23,9 @@ class DriverItemAdapter() : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
         fun onBind(driver: Driver) {
             var haydovchi_serial=driver.serialNumber
             itemView.driver_hstry_date.text = "$haydovchi_serial - Haydovchi | "+driver.date
-            itemView.driver_hstry_berilgan_summa.text="Berilgan tovarlar summasi: "+driver.givenCash
+            itemView.driver_hstry_berilgan_summa.text="Berilgan tovarlar: "+driver.givenCash
             itemView.driver_hstry_olingan_summa.text = "Olingan summa: " + driver.receivedCash
-            itemView.driver_hstry_berilgan_tovarlar.text = "Tovarlar:   " + driver.product
+            itemView.driver_hstry_berilgan_tovarlar.text = "Tovarlar:  ..... "
 
 
             itemView.setOnClickListener{

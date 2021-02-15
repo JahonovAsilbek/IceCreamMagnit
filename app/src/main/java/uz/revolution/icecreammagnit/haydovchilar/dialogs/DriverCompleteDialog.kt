@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.fragment_customer_complete_dialog.view.*
@@ -34,6 +35,8 @@ class DriverCompleteDialog : DialogFragment() {
     ): View {
         root = inflater.inflate(R.layout.fragment_driver_complete_dialog, container, false)
 
+        root.complete_et.requestFocus()
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         loadDataToView()
         onOkClick()
         onCancelClick()
