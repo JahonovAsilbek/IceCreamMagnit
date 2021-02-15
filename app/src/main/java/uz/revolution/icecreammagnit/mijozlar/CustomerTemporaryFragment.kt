@@ -144,7 +144,7 @@ class CustomerTemporaryFragment : Fragment() {
                         )
                         findNavController().popBackStack()
                         Toast.makeText(root.context, "Yakunlandi!", Toast.LENGTH_SHORT).show()
-                        magnitDao?.deleteAllCustomerTemporary()
+                        magnitDao?.deleteCustomerTemporaryByCustomerID(param1)
                         loadData()
                         loadAdapter()
                     }
@@ -168,6 +168,7 @@ class CustomerTemporaryFragment : Fragment() {
     }
 
     private fun loadData() {
+        customerTemporaryList?.clear()
         customerTemporaryList = magnitDao?.getCustomerTemporaryByCustomerID(param1) as ArrayList
     }
 

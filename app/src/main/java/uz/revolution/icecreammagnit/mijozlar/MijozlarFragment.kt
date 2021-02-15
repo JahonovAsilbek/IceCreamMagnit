@@ -38,7 +38,7 @@ class MijozlarFragment : Fragment() {
     }
 
     lateinit var root:View
-    lateinit var customerList: ArrayList<Category>
+    lateinit var customerList: ArrayList<Customer>
     lateinit var adapter:CategoryAdapter
     private var database:AppDatabase?=null
     private var magnitDao:MagnitDao?=null
@@ -64,11 +64,13 @@ class MijozlarFragment : Fragment() {
 
     private fun loadData() {
         customerList = ArrayList()
-        customerList.add(Category("Bahrom aka(Shofirkon)",magnitDao!!.getCustomerBySerialNumber(1) as ArrayList))
-        customerList.add(Category("Boshqalar",magnitDao!!.getCustomerBySerialNumber(2) as ArrayList))
+        val customer1=magnitDao!!.getCustomerBySerialNumber(1) as ArrayList
+        val customer2=magnitDao!!.getCustomerBySerialNumber(2) as ArrayList
+        customer1.reverse()
+        customer2.reverse()
+        customerList.addAll(customer1)
+        customerList.addAll(customer2)
     }
-
-    inner class Category(var title:String,var arrayList:ArrayList<Customer>)
 
     private fun setTabs() {
         val tabCount = root.customer_tab_layout.tabCount
@@ -77,7 +79,9 @@ class MijozlarFragment : Fragment() {
             val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
             val tab = root.customer_tab_layout.getTabAt(i)
             tab?.customView = tabView
-            tabView.title_tv.text = customerList[i].title
+            if (i == 0) {
+                tabView.title_tv.text = "Bahrom aka(Shofirkon)"
+            } else tabView.title_tv.text = "Boshqalar"
 
             if (i == 0) {
                 tabView.circle_layout.visibility = View.VISIBLE

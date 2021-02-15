@@ -21,7 +21,7 @@ class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
             itemView.date.text="Sana: ${receivedProducts.date}"
             itemView.received_cash.text="Olingan summa: ${receivedProducts.receivedCash}"
             itemView.total_cash.text="Ja'mi summa: ${receivedProducts.givenCash}"
-            itemView.products.text="Tovarlar: ${receivedProducts.product}"
+            itemView.products.text="Tovarlar: \n${receivedProducts.product}"
 
             itemView.setOnClickListener {
                 if (onItemClick != null) {

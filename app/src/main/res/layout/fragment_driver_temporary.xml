@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".haydovchilar.DriverTemporaryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/driver_temporary_yakunlash_btn"
         android:id="@+id/driver_tempopary_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/driver_temporary_yakunlash_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/driver_temporary_yakunlash_btn"
-        app:layout_constraintTop_toBottomOf="@id/driver_tempopary_recycler_view"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/toolbar_color"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/btn_back"
         android:text="Yakunlash"
+        android:textAllCaps="false"
         android:textColor="#fff"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toBottomOf="@id/driver_tempopary_recycler_view" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/driver_temporary_yakunlash_btn"
-        app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/driver_temporary_float_action_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:backgroundTint="@color/toolbar_color"
         android:src="@drawable/ic_plus2"
-        android:layout_height="wrap_content" />
+        app:layout_constraintBottom_toTopOf="@id/driver_temporary_yakunlash_btn"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

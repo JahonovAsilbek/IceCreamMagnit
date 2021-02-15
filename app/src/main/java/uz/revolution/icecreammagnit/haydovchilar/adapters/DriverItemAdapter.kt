@@ -11,7 +11,14 @@ import kotlinx.android.synthetic.main.item_bottomsheet.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.Driver
 
-class DriverItemAdapter(var driverList:List<Driver>) : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
+class DriverItemAdapter() : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
+
+    private var driverList:ArrayList<Driver>?=null
+
+    fun setAdapter(driverList: ArrayList<Driver>) {
+        this.driverList=driverList
+    }
+
     inner class Vh(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(driver: Driver) {
             var haydovchi_serial=driver.serialNumber
@@ -62,8 +69,8 @@ class DriverItemAdapter(var driverList:List<Driver>) : RecyclerView.Adapter<Driv
     }
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind(driverList[position])
+        holder.onBind(driverList!![position])
     }
 
-    override fun getItemCount(): Int = driverList.size
+    override fun getItemCount(): Int = driverList!!.size
 }

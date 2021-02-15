@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".haydovchilar.DriverChooseProductFragment">
 
@@ -18,9 +19,12 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/dr_choose_product_bekor_qilish_btn"
         app:layout_constraintTop_toBottomOf="@id/dr_choose_product_recycler_view"
-        android:background="@color/toolbar_color"
+        android:background="@drawable/btn_back"
         android:text="Bekor qilish"
         android:textColor="#fff"
+        android:layout_margin="12dp"
+        android:textSize="22sp"
+        android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

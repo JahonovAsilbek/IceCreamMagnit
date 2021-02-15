@@ -244,6 +244,9 @@ interface MagnitDao {
     @Query("DELETE FROM `temporary`")
     fun deleteAllTemporary()
 
+    @Query("DELETE FROM `temporary` WHERE driver_id=:driverID")
+    fun deleteTemporaryByDriverID(driverID: Int)
+
     /*
    *
    *
@@ -277,6 +280,9 @@ interface MagnitDao {
 
     @Query("DELETE FROM customer_temporary")
     fun deleteAllCustomerTemporary()
+
+    @Query("DELETE FROM customer_temporary WHERE customer_id=:customerID")
+    fun deleteCustomerTemporaryByCustomerID(customerID: Int)
 
     /*
    *

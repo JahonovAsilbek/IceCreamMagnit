@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.choose_product_customer.view.*
 import uz.revolution.icecreammagnit.R
@@ -93,6 +94,7 @@ class ChooseProductCustomer : Fragment() {
                             loadData()
                             loadAdapters()
                             adapter.notifyDataSetChanged()
+                            findNavController().popBackStack()
                         }
                     })
                 } else {

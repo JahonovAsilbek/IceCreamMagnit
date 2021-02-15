@@ -12,6 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_customer.view.*
 import kotlinx.android.synthetic.main.item_bottomsheet.view.*
 import uz.revolution.icecreammagnit.R
+import uz.revolution.icecreammagnit.daos.MagnitDao
+import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mijozlar.adapters.CustomerAdapter
 import uz.revolution.icecreammagnit.models.Customer
 
@@ -29,13 +31,18 @@ class CustomerItemFragment : Fragment() {
             param2 = it.getInt(ARG_PARAM2)
         }
         val bundle = arguments
-        param1 = bundle?.getSerializable("customer") as ArrayList<Customer>?
         param2 = bundle?.getInt("customerID")!!
+        database=AppDatabase.get.getDatabase()
+        magnitDao=database!!.getProductDao()
         adapter = CustomerAdapter()
+        customerList= ArrayList()
     }
 
     lateinit var root: View
     lateinit var adapter: CustomerAdapter
+    private var customerList:ArrayList<Customer>?=null
+    private var database:AppDatabase?=null
+    private var magnitDao: MagnitDao?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +50,7 @@ class CustomerItemFragment : Fragment() {
     ): View {
         root = inflater.inflate(R.layout.fragment_customer, container, false)
 
+        loadData()
         loadAdapter()
 
         root.set_new.setOnClickListener {
@@ -96,15 +104,21 @@ class CustomerItemFragment : Fragment() {
         return root
     }
 
+    private fun loadData() {
+        customerList?.clear()
+        customerList=magnitDao?.getCustomerBySerialNumber(param2) as ArrayList
+    }
+
     private fun loadAdapter() {
-        param1!!.reverse()
-        adapter.setAdapter(param1!!)
+        customerList!!.reverse()
+        adapter.setAdapter(customerList!!)
         root.rv.adapter = adapter
         adapter.notifyDataSetChanged()
     }
 
     override fun onResume() {
         super.onResume()
+        loadData()
         loadAdapter()
     }
 
