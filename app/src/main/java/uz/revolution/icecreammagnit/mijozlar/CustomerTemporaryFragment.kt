@@ -49,7 +49,7 @@ class CustomerTemporaryFragment : Fragment() {
     private var database: AppDatabase? = null
     private var magnitDao: MagnitDao? = null
     lateinit var adapter: CustomerTemporaryAdapter
-    var karobka_soni=0
+    var karobka_soni = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -113,8 +113,9 @@ class CustomerTemporaryFragment : Fragment() {
     }
 
     private fun completeClick() {
-        if (customerTemporaryList!!.size > 0) {
-            root.yakunlash.setOnClickListener {
+
+        root.yakunlash.setOnClickListener {
+            if (customerTemporaryList!!.size > 0) {
                 var berilganSumma = 0
                 var tovar = ""
                 var boxNumberCost = ""
@@ -150,6 +151,8 @@ class CustomerTemporaryFragment : Fragment() {
                         loadAdapter()
                     }
                 })
+            } else {
+                Toast.makeText(root.context, "Oldin mahsulot tanlang!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -170,10 +173,10 @@ class CustomerTemporaryFragment : Fragment() {
 
     private fun loadData() {
         customerTemporaryList?.clear()
-        karobka_soni=0
+        karobka_soni = 0
         customerTemporaryList = magnitDao?.getCustomerTemporaryByCustomerID(param1) as ArrayList
         for (i in 0 until customerTemporaryList!!.size) {
-            karobka_soni+=customerTemporaryList!![i].box
+            karobka_soni += customerTemporaryList!![i].box
         }
     }
 

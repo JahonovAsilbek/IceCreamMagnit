@@ -15,7 +15,6 @@ import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.magnit.adapters.MagnitTemporaryAdapter
 import uz.revolution.icecreammagnit.magnit.dialogs.MagnitCompleteDialog
-import uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerCompleteDialog
 import uz.revolution.icecreammagnit.mijozlar.dialogs.MagnitEditDialog
 import uz.revolution.icecreammagnit.models.Magnit
 import uz.revolution.icecreammagnit.models.MagnitTemporary
@@ -38,7 +37,7 @@ class MagnitTemporaryFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        (activity as AppCompatActivity).supportActionBar?.title = "${getCurrentDate()} | Magnit"
+        (activity as AppCompatActivity).supportActionBar?.title = "Magnit | ${getCurrentDate()}"
         database = AppDatabase.get.getDatabase()
         magnitDao = database?.getProductDao()
         adapter = MagnitTemporaryAdapter()
@@ -70,7 +69,7 @@ class MagnitTemporaryFragment : Fragment() {
             var tovar = ""
             var totalBox = 0
             var totalCash = 0
-            if (magnitTemporaryList != null) {
+            if (magnitTemporaryList!!.size > 0) {
                 for (i in 0 until magnitTemporaryList!!.size) {
                     tovar +=
                         "\n${magnitTemporaryList!![i].name}   ${magnitTemporaryList!![i].receivedNumber}x${
@@ -83,9 +82,9 @@ class MagnitTemporaryFragment : Fragment() {
                 }
 
                 val beginTransaction = childFragmentManager.beginTransaction()
-                val dialog =MagnitCompleteDialog()
-                dialog.show(beginTransaction,"complete")
-                dialog.setOnClick(object :MagnitCompleteDialog.OnClick{
+                val dialog = MagnitCompleteDialog.newInstance("Yakunlansinmi?")
+                dialog.show(beginTransaction, "complete")
+                dialog.setOnClick(object : MagnitCompleteDialog.OnClick {
                     override fun onClick() {
                         magnitDao?.insertMagnit(Magnit(getCurrentDate(), tovar, totalBox))
                         magnitDao?.deleteAllFromMagnitTemporary()
@@ -174,7 +173,7 @@ class MagnitTemporaryFragment : Fragment() {
         super.onResume()
         loadData()
         loadAdapters()
-        (activity as AppCompatActivity).supportActionBar?.title = "${getCurrentDate()} | Magnit"
+        (activity as AppCompatActivity).supportActionBar?.title = "Magnit | ${getCurrentDate()}"
     }
 
     private fun getCurrentDate(): String {

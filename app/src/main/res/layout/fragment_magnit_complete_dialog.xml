@@ -18,34 +18,51 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/layout"
+            android:id="@+id/title_tv"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Yakunlandi!"
-            android:textSize="22sp"
+            android:text="Yakunlansinmi?"
             android:textColor="@android:color/black"
-            app:layout_constraintBottom_toTopOf="@id/complete_ok"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/complete_ok"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/btn_back"
-            android:text="OK"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/layout"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/title_tv"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/complete_cancel"
+                android:layout_margin="10dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dialog_corner"
+                android:text="Yo'q"
+                android:textAllCaps="false"
+                android:textColor="@color/toolbar_color"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/complete_ok"
+                android:layout_width="100dp"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_back"
+                android:text="Ha"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

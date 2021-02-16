@@ -16,8 +16,12 @@ import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.haydovchilar.adapters.DriverItemAdapter
+import uz.revolution.icecreammagnit.magnit.dialogs.MagnitCompleteDialog
 import uz.revolution.icecreammagnit.models.Driver
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -52,12 +56,12 @@ class DriverItemFragment : Fragment() {
         loadData()
         root = inflater.inflate(R.layout.fragment_driver_item, container, false)
 
+
         val bundle = Bundle()
         bundle.putInt("param1",(param1!!+1))
+        addNewClick(bundle)
 
-        root.driver_item_yagi_qoshish_btn.setOnClickListener {
-            findNavController().navigate(R.id.driverTemporaryFragment,bundle)
-        }
+
         root.driver_item_info.setOnClickListener {
             var berilgan_tovarlar = 0
             var olingan_summa = 0
@@ -94,6 +98,36 @@ class DriverItemFragment : Fragment() {
             myDialog.show()
         }
         return root
+    }
+
+    private fun addNewClick(bundle:Bundle) {
+        var addedToday=false
+        for (i in 0 until myList!!.size) {
+            addedToday=myList!![i].date.equals(getCurrentDate(),true)
+            if (addedToday) {
+                break
+            }
+        }
+        root.driver_item_yagi_qoshish_btn.setOnClickListener {
+            if (addedToday) {
+                val beginTransaction = childFragmentManager.beginTransaction()
+                val dialog =
+                    MagnitCompleteDialog.newInstance("Bugun uchun hisobot mavjud. Baribir qo'shilsinmi?")
+                dialog.show(beginTransaction, "complete")
+                dialog.setOnClick(object : MagnitCompleteDialog.OnClick {
+                    override fun onClick() {
+                        findNavController().navigate(R.id.driverTemporaryFragment, bundle)
+                    }
+                })
+            } else {
+                findNavController().navigate(R.id.driverTemporaryFragment, bundle)
+            }
+        }
+    }
+
+    private fun getCurrentDate(): String {
+        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
+        return simpleDateFormat.format(Date())
     }
 
     private fun loadData() {

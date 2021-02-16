@@ -15,7 +15,11 @@ import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.daos.MagnitDao
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.magnit.adapters.MagnitItemAdapter
+import uz.revolution.icecreammagnit.magnit.dialogs.MagnitCompleteDialog
 import uz.revolution.icecreammagnit.models.Magnit
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 private const val ARG_PARAM1 = "param1"
@@ -87,9 +91,33 @@ class MagnitFragment : Fragment() {
     }
 
     private fun addNewClick() {
-        root.magnit_set_new.setOnClickListener {
-            findNavController().navigate(R.id.magnitTemporaryFragment)
+        var addedToday: Boolean = false
+        for (i in 0 until magnitList!!.size) {
+            addedToday = magnitList!![i].date!!.equals(getCurrentDate(), true)
+            if (addedToday) {
+                break
+            }
         }
+        root.magnit_set_new.setOnClickListener {
+            if (addedToday) {
+                val beginTransaction = childFragmentManager.beginTransaction()
+                val dialog =
+                    MagnitCompleteDialog.newInstance("Bugun uchun hisobot mavjud. Baribir qo'shilsinmi?")
+                dialog.show(beginTransaction, "complete")
+                dialog.setOnClick(object : MagnitCompleteDialog.OnClick {
+                    override fun onClick() {
+                        findNavController().navigate(R.id.magnitTemporaryFragment)
+                    }
+                })
+            } else {
+                findNavController().navigate(R.id.magnitTemporaryFragment)
+            }
+        }
+    }
+
+    private fun getCurrentDate(): String {
+        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
+        return simpleDateFormat.format(Date())
     }
 
     private fun loadData() {

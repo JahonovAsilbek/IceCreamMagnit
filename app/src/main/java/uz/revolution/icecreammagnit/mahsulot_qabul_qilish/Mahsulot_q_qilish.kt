@@ -19,7 +19,7 @@ private const val ARG_PARAM1 = "param1"
 class Mahsulot_q_qilishFragment : Fragment() {
 
     private var param1: String? = null
-    private var productDao:MagnitDao?=null
+    private var productDao: MagnitDao? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,14 +108,53 @@ class Mahsulot_q_qilishFragment : Fragment() {
     private fun loadData() {
         receivedListBySupplierID = ArrayList()
 
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(1).name.toString(),(productDao!!.getReceivedProductsBySupplierID(1) as ArrayList)))
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(2).name.toString(),(productDao!!.getReceivedProductsBySupplierID(2) as ArrayList)))
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(3).name.toString(),(productDao!!.getReceivedProductsBySupplierID(3) as ArrayList)))
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(4).name.toString(),(productDao!!.getReceivedProductsBySupplierID(4) as ArrayList)))
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(5).name.toString(),(productDao!!.getReceivedProductsBySupplierID(5) as ArrayList)))
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(6).name.toString(),(productDao!!.getReceivedProductsBySupplierID(6) as ArrayList)))
-        receivedListBySupplierID.add(Category(productDao!!.getSupplierByID(7).name.toString(),(productDao!!.getReceivedProductsBySupplierID(7) as ArrayList)))
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(1).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(1) as ArrayList)
+            )
+        )
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(2).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(2) as ArrayList)
+            )
+        )
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(3).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(3) as ArrayList)
+            )
+        )
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(4).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(4) as ArrayList)
+            )
+        )
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(5).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(5) as ArrayList)
+            )
+        )
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(6).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(6) as ArrayList)
+            )
+        )
+        receivedListBySupplierID.add(
+            Category(
+                productDao!!.getSupplierByID(7).name.toString(),
+                (productDao!!.getReceivedProductsBySupplierID(7) as ArrayList)
+            )
+        )
 
     }
-    inner class Category(var title:String,var receivedListBySupplierID:ArrayList<ReceivedProducts>)
+
+    inner class Category(
+        var title: String,
+        var receivedListBySupplierID: ArrayList<ReceivedProducts>
+    )
 }

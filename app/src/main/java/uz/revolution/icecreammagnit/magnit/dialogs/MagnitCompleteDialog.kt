@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.fragment_customer_edit.view.*
 import kotlinx.android.synthetic.main.fragment_magnit_complete_dialog.view.*
 import uz.revolution.icecreammagnit.R
+import uz.revolution.icecreammagnit.magnit.MagnitTemporaryFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,10 +42,10 @@ class MagnitCompleteDialog : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         root = inflater.inflate(R.layout.fragment_magnit_complete_dialog, container, false)
         dialog?.requestWindowFeature(STYLE_NORMAL)
-        isCancelable = true
+        isCancelable = false
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         root.complete_ok.setOnClickListener {
@@ -52,6 +53,13 @@ class MagnitCompleteDialog : DialogFragment() {
                 onClick!!.onClick()
                 dismiss()
             }
+        }
+
+
+        root.title_tv.text=param1
+
+        root.complete_cancel.setOnClickListener {
+            dismiss()
         }
 
 
@@ -64,5 +72,15 @@ class MagnitCompleteDialog : DialogFragment() {
 
     fun setOnClick(onClick: OnClick) {
         this.onClick=onClick
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String) =
+            MagnitCompleteDialog().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                }
+            }
     }
 }

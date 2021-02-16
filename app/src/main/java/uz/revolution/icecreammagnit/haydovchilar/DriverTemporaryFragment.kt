@@ -1,13 +1,12 @@
 package uz.revolution.icecreammagnit.haydovchilar
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_driver_temporary.view.*
@@ -16,7 +15,6 @@ import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.haydovchilar.adapters.DrTemporaryAdapter
 import uz.revolution.icecreammagnit.haydovchilar.dialogs.DrTemporaryEditDialog
 import uz.revolution.icecreammagnit.haydovchilar.dialogs.DriverCompleteDialog
-import uz.revolution.icecreammagnit.mijozlar.dialogs.CustomerCompleteDialog
 import uz.revolution.icecreammagnit.models.Driver
 import uz.revolution.icecreammagnit.models.Temporary
 import java.text.SimpleDateFormat
@@ -28,12 +26,12 @@ private const val ARG_PARAM1 = "param1"
 class DriverTemporaryFragment : Fragment() {
     private var param1: Int? = null
 
-    lateinit var root:View
+    lateinit var root: View
     val database = AppDatabase.get.getDatabase()
     val getMagnitDao = database.getProductDao()
-    var myList=ArrayList<Temporary>()
+    var myList = ArrayList<Temporary>()
     var drTemAdapter = DrTemporaryAdapter()
-    var karobka_soni=0
+    var karobka_soni = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +51,8 @@ class DriverTemporaryFragment : Fragment() {
 
         root.driver_temporary_float_action_btn.setOnClickListener {
             var bundle = Bundle()
-            bundle.putInt("param1",param1!!)
-            findNavController().navigate(R.id.driverChooseProductFragment,bundle)
+            bundle.putInt("param1", param1!!)
+            findNavController().navigate(R.id.driverChooseProductFragment, bundle)
         }
 
         root.driver_temporary_yakunlash_btn.setText("Yakunlash: $karobka_soni karobka")
@@ -66,14 +64,14 @@ class DriverTemporaryFragment : Fragment() {
 
     private fun loadList() {
         myList.clear()
-        karobka_soni=0
+        karobka_soni = 0
         var allList: ArrayList<Temporary> =
             getMagnitDao?.getAllTemporary()!! as ArrayList<Temporary>
 
         for (i in 0 until allList.size) {
             if (allList[i].driverID == param1) {
                 myList.add(allList[i])
-                karobka_soni+=allList[i].numberReceived
+                karobka_soni += allList[i].numberReceived
             }
         }
     }
@@ -81,28 +79,33 @@ class DriverTemporaryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = "Haydovchi $param1 | ${getCurrentDate()}"
+        (activity as AppCompatActivity).supportActionBar?.title =
+            "Haydovchi $param1 | ${getCurrentDate()}"
     }
+
     private fun getCurrentDate(): String {
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
         return simpleDateFormat.format(Date())
     }
+
     private fun loadAdapter() {
         drTemAdapter.setAdapter(myList)
         root.driver_tempopary_recycler_view.layoutManager = LinearLayoutManager(root.context)
         root.driver_tempopary_recycler_view.adapter = drTemAdapter
         drTemAdapter.notifyDataSetChanged()
     }
+
     private fun completeClick() {
-        if (myList.size > 0) {
-            root.driver_temporary_yakunlash_btn.setOnClickListener {
+
+        root.driver_temporary_yakunlash_btn.setOnClickListener {
+            if (myList.size > 0) {
                 var berilganSumma = 0
                 var tovar = ""
                 var boxNumberCost = ""
                 var totalBox = 0
 
                 for (i in 0 until myList.size) {
-                    berilganSumma += myList[i].numberReceived*myList[i].totalBox*myList[i].cost
+                    berilganSumma += myList[i].numberReceived * myList[i].totalBox * myList[i].cost
                     boxNumberCost =
                         "${myList[i].numberReceived}x${myList[i].totalBox}x${myList[i].cost}"
                     tovar += "${myList[i].name}   ${boxNumberCost}\n"
@@ -131,9 +134,12 @@ class DriverTemporaryFragment : Fragment() {
                         loadAdapter()
                     }
                 })
+            } else {
+                Toast.makeText(root.context, "Oldin mahsulot tanlang!", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
     private fun onEditClick() {
         drTemAdapter.setOnLongClick(object : DrTemporaryAdapter.OnLongClick {
             override fun onClick(temporary: Temporary) {
