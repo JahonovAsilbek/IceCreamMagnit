@@ -40,6 +40,8 @@
                         android:id="@+id/edit_product_mahsulot_nomi"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:padding="0dp"
+                        android:layout_margin="0dp"
                         android:maxLines="20"
                         android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -64,6 +66,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="number"
+                        android:padding="0dp"
+                        android:layout_margin="0dp"
                         android:maxLines="20"
                         android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -86,6 +90,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_product_mahsulot_mijoz_uchun_narx"
                         android:layout_width="match_parent"
+                        android:padding="0dp"
+                        android:layout_margin="0dp"
                         android:layout_height="50dp"
                         android:inputType="number"
                         android:maxLines="20"
@@ -112,6 +118,8 @@
                         android:id="@+id/edit_product_mahsulot_astakasi"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:padding="0dp"
+                        android:layout_margin="0dp"
                         android:inputType="number"
                         android:maxLines="20"
                         android:textCursorDrawable="@drawable/cursor_color" />
@@ -138,6 +146,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:inputType="number"
+                        android:padding="0dp"
+                        android:layout_margin="0dp"
                         android:maxLines="20"
                         android:textCursorDrawable="@drawable/cursor_color" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -161,6 +171,8 @@
                         android:id="@+id/edit_product_mahsulot_karobkada_soni"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:padding="0dp"
+                        android:layout_margin="0dp"
                         android:inputType="number"
                         android:maxLines="20"
                         android:textCursorDrawable="@drawable/cursor_color" />
