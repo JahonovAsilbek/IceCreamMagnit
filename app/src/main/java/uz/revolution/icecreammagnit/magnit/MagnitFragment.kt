@@ -62,7 +62,7 @@ class MagnitFragment : Fragment() {
                 val dialog = BottomSheetDialog(root.context, R.style.SheetDialog)
                 val view = layoutInflater.inflate(R.layout.item_bottomsheet_magnit, null, false)
                 view.date.text = "Sana: ${magnit.date}"
-                view.products.text = "Tovarlar: \n${magnit.product}"
+                view.products.text = "Tovarlar: ${magnit.product}"
                 view.total_box.text = "\n\nJami karobka: ${magnit.totalBox}"
                 view.share.setOnClickListener {
                     val sendIntent: Intent = Intent().apply {
@@ -70,7 +70,7 @@ class MagnitFragment : Fragment() {
                         putExtra(
                             Intent.EXTRA_TEXT,
                             view.date.text.toString()
-                                    + "\n" +
+                                    + "    Magnit\n\n" +
                                     view.products.text.toString()
                                     + "\n\n" +
                                     view.total_box.text.toString()

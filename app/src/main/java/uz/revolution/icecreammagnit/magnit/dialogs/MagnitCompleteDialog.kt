@@ -44,7 +44,7 @@ class MagnitCompleteDialog : DialogFragment() {
     ): View? {
         root = inflater.inflate(R.layout.fragment_magnit_complete_dialog, container, false)
         dialog?.requestWindowFeature(STYLE_NORMAL)
-        isCancelable = false
+        isCancelable = true
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
 
         root.complete_ok.setOnClickListener {

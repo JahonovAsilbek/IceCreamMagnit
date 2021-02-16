@@ -49,6 +49,7 @@ class CustomerTemporaryFragment : Fragment() {
     private var database: AppDatabase? = null
     private var magnitDao: MagnitDao? = null
     lateinit var adapter: CustomerTemporaryAdapter
+    var karobka_soni=0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +62,7 @@ class CustomerTemporaryFragment : Fragment() {
         clickFloatActionButton()
         completeClick()
         onEditClick()
-
+        root.yakunlash.setText("Yakunlash: $karobka_soni karobka")
         return root
     }
 
@@ -122,7 +123,7 @@ class CustomerTemporaryFragment : Fragment() {
                 for (i in 0 until customerTemporaryList!!.size) {
                     berilganSumma += customerTemporaryList!![i].mahsulotlarSummasi
                     boxNumberCost =
-                        "\n${customerTemporaryList!![i].box}x${customerTemporaryList!![i].karobkadaSoni}x${customerTemporaryList!![i].customerCost}"
+                        "${customerTemporaryList!![i].box}x${customerTemporaryList!![i].karobkadaSoni}x${customerTemporaryList!![i].customerCost}"
                     tovar += "${customerTemporaryList!![i].name}   ${boxNumberCost}\n"
                     totalBox += customerTemporaryList!![i].box
                 }
@@ -169,7 +170,11 @@ class CustomerTemporaryFragment : Fragment() {
 
     private fun loadData() {
         customerTemporaryList?.clear()
+        karobka_soni=0
         customerTemporaryList = magnitDao?.getCustomerTemporaryByCustomerID(param1) as ArrayList
+        for (i in 0 until customerTemporaryList!!.size) {
+            karobka_soni+=customerTemporaryList!![i].box
+        }
     }
 
     override fun onResume() {

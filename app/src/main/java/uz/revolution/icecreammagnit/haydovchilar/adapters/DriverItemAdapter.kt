@@ -33,7 +33,7 @@ class DriverItemAdapter : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
 
                 val view = LayoutInflater.from(itemView.context).inflate(R.layout.item_bottomsheet, null, false)
                 view.date.text = "$haydovchi_serial - Haydovchi |  ${driver.date}"
-                view.given_cash.text = "Berilgan tovarlar summasi:  ${driver.givenCash}"
+                view.given_cash.text = "Berilgan tovarlar:  ${driver.givenCash}"
                 view.received_cash.text = "Olingan summa:  ${driver.receivedCash}"
                 view.products.text = "Tovarlar: ${driver.product}"
                 view.total_box.text = "Jami karobka:  ${driver.totalBox}"
@@ -44,7 +44,7 @@ class DriverItemAdapter : RecyclerView.Adapter<DriverItemAdapter.Vh>() {
                         putExtra(
                             Intent.EXTRA_TEXT,
                             view.date.text.toString()
-                                    + "\n" +
+                                    + "\n\n" +
                                     view.given_cash.text.toString()
                                     + "\n" +
                                     view.received_cash.text.toString()
