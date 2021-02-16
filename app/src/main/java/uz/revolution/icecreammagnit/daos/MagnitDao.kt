@@ -322,4 +322,28 @@ interface MagnitDao {
     @Query("DELETE FROM magnit_temporary")
     fun deleteAllFromMagnitTemporary()
 
+    /*
+  *
+  *
+  *
+  *
+  *
+  *
+                      Password Dao Methods
+  *
+  *
+  *
+  *
+  *
+  *
+  */
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPassword(password: Password)
+
+    @Update
+    fun updatePassword(password: Password)
+
+    @Delete
+    fun deletePassword(password: Password)
 }
