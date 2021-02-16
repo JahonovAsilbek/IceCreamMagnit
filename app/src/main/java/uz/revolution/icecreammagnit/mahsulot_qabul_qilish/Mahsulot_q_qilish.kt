@@ -29,11 +29,12 @@ class Mahsulot_q_qilishFragment : Fragment() {
         setHasOptionsMenu(true)
         database = AppDatabase.get.getDatabase()
         productDao = database!!.getProductDao()
+        adapter = ReceivedProductAdapter(childFragmentManager)
     }
 
     lateinit var root: View
     lateinit var adapter: ReceivedProductAdapter
-    private lateinit var receivedListBySupplierID: ArrayList<Category>
+    private lateinit var receivedListBySupplierID: ArrayList<ReceivedProducts>
     var database: AppDatabase? = null
 
     override fun onCreateView(
@@ -69,7 +70,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
     }
 
     private fun loadAdapters() {
-        adapter = ReceivedProductAdapter(receivedListBySupplierID, childFragmentManager)
+        adapter.setAdapter(receivedListBySupplierID)
         root.received_vp.adapter = adapter
         root.received_tab_layout.setupWithViewPager(root.received_vp)
         adapter.notifyDataSetChanged()
@@ -86,6 +87,7 @@ class Mahsulot_q_qilishFragment : Fragment() {
         return true
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setTabs() {
         val tabCount = root.received_tab_layout.tabCount
 
@@ -93,7 +95,15 @@ class Mahsulot_q_qilishFragment : Fragment() {
             val tabView = LayoutInflater.from(root.context).inflate(R.layout.tab_item, null, false)
             val tab = root.received_tab_layout.getTabAt(i)
             tab?.customView = tabView
-            tabView.title_tv.text = receivedListBySupplierID[i].title
+            when (i) {
+                0 -> tabView.title_tv.text = "Royal Muz Servis"
+                1 -> tabView.title_tv.text = "Vazira MCHJ"
+                2 -> tabView.title_tv.text = "Imkon Plus"
+                3 -> tabView.title_tv.text = "Ice & Gold(Bekobod)"
+                4 -> tabView.title_tv.text = "Dairy Classic(Singapur)"
+                5 -> tabView.title_tv.text = "Ulug'bek aka(Buxoro)"
+                6 -> tabView.title_tv.text = "Boshqalar..."
+            }
 
             if (i == 0) {
                 tabView.circle_layout.visibility = View.VISIBLE
@@ -107,54 +117,13 @@ class Mahsulot_q_qilishFragment : Fragment() {
 
     private fun loadData() {
         receivedListBySupplierID = ArrayList()
-
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(1).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(1) as ArrayList)
-            )
-        )
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(2).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(2) as ArrayList)
-            )
-        )
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(3).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(3) as ArrayList)
-            )
-        )
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(4).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(4) as ArrayList)
-            )
-        )
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(5).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(5) as ArrayList)
-            )
-        )
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(6).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(6) as ArrayList)
-            )
-        )
-        receivedListBySupplierID.add(
-            Category(
-                productDao!!.getSupplierByID(7).name.toString(),
-                (productDao!!.getReceivedProductsBySupplierID(7) as ArrayList)
-            )
-        )
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(1) as ArrayList))
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(2) as ArrayList))
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(3) as ArrayList))
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(4) as ArrayList))
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(5) as ArrayList))
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(6) as ArrayList))
+        receivedListBySupplierID.addAll((productDao!!.getReceivedProductsBySupplierID(7) as ArrayList))
 
     }
-
-    inner class Category(
-        var title: String,
-        var receivedListBySupplierID: ArrayList<ReceivedProducts>
-    )
 }

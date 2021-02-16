@@ -9,10 +9,15 @@ import kotlinx.android.synthetic.main.item_received.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.models.ReceivedProducts
 
-class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
+class ReceivedItemAdapter() :
     RecyclerView.Adapter<ReceivedItemAdapter.VH>() {
 
     private var onItemClick:OnItemClick?=null
+    private var receivedList: ArrayList<ReceivedProducts>?=null
+
+    fun setAdapter(receivedList: ArrayList<ReceivedProducts>) {
+        this.receivedList=receivedList
+    }
 
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -36,10 +41,10 @@ class ReceivedItemAdapter(var receivedList: ArrayList<ReceivedProducts>) :
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.onBind(receivedList[position])
+        holder.onBind(receivedList!![position])
     }
 
-    override fun getItemCount(): Int = receivedList.size
+    override fun getItemCount(): Int = receivedList!!.size
 
     interface OnItemClick{
         fun onClick(receivedProducts: ReceivedProducts)

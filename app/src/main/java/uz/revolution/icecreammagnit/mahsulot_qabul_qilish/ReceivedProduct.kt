@@ -10,33 +10,42 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.item_bottomsheet.view.*
 import kotlinx.android.synthetic.main.received_product.view.*
 import uz.revolution.icecreammagnit.R
+import uz.revolution.icecreammagnit.daos.MagnitDao
+import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.adapters.ReceivedItemAdapter
 import uz.revolution.icecreammagnit.models.ReceivedProducts
 
 class ReceivedProductFragment : Fragment() {
 
-    private var param1: ArrayList<ReceivedProducts>? = null
+    private var param1: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle = arguments
-        param1 = bundle?.getSerializable("received") as ArrayList<ReceivedProducts>?
+        param1 = bundle?.getInt("supplierID")!!
+        database = AppDatabase.get.getDatabase()
+        magnitDao = database!!.getProductDao()
+        adapter = ReceivedItemAdapter()
     }
 
     lateinit var root: View
     lateinit var adapter: ReceivedItemAdapter
+    private var database: AppDatabase? = null
+    private var magnitDao: MagnitDao? = null
+    private var receivedProductList: ArrayList<ReceivedProducts>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         root = inflater.inflate(R.layout.received_product, container, false)
+        loadData()
+        loadAdapters()
+        itemClick()
+        return root
+    }
 
-        param1!!.reverse()
-        adapter = ReceivedItemAdapter(param1!!)
-        root.received_rv.adapter = adapter
-        adapter.notifyDataSetChanged()
-
+    private fun itemClick() {
         adapter.setOnItemClick(object : ReceivedItemAdapter.OnItemClick {
             override fun onClick(receivedProducts: ReceivedProducts) {
                 val dialog = BottomSheetDialog(root.context, R.style.SheetDialog)
@@ -73,13 +82,24 @@ class ReceivedProductFragment : Fragment() {
             }
 
         })
+    }
 
-        return root
+    private fun loadAdapters() {
+        receivedProductList!!.reverse()
+        adapter.setAdapter(receivedProductList!!)
+        root.received_rv.adapter = adapter
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun loadData() {
+        receivedProductList = ArrayList()
+        receivedProductList = magnitDao?.getReceivedProductsBySupplierID(param1) as ArrayList
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.notifyDataSetChanged()
+        loadData()
+        loadAdapters()
     }
 
 }

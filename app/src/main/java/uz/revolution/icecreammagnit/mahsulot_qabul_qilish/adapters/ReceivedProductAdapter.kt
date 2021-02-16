@@ -8,16 +8,20 @@ import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.Mahsulot_q_qilishFragm
 import uz.revolution.icecreammagnit.mahsulot_qabul_qilish.ReceivedProductFragment
 import uz.revolution.icecreammagnit.models.ReceivedProducts
 
-class ReceivedProductAdapter(
-    var receivedProductsBySupplierID: ArrayList<Mahsulot_q_qilishFragment.Category>,
-    fragmentManager: FragmentManager
+class ReceivedProductAdapter(fragmentManager: FragmentManager
 ) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    override fun getCount(): Int = receivedProductsBySupplierID.size
+    private var receivedProductsBySupplierID:ArrayList<ReceivedProducts>?=null
+
+    fun setAdapter(receivedProductsBySupplierID: ArrayList<ReceivedProducts>) {
+        this.receivedProductsBySupplierID=receivedProductsBySupplierID
+    }
+
+    override fun getCount(): Int = 7
 
     override fun getItem(position: Int): Fragment {
         val bundle = Bundle()
-        bundle.putSerializable("received", receivedProductsBySupplierID[position].receivedListBySupplierID)
+        bundle.putInt("supplierID", position+1)
         val fragment = ReceivedProductFragment()
         fragment.arguments = bundle
         return fragment
