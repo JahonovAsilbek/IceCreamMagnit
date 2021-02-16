@@ -33,6 +33,7 @@ class DriverTemporaryFragment : Fragment() {
     val getMagnitDao = database.getProductDao()
     var myList=ArrayList<Temporary>()
     var drTemAdapter = DrTemporaryAdapter()
+    var karobka_soni=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,8 @@ class DriverTemporaryFragment : Fragment() {
             bundle.putInt("param1",param1!!)
             findNavController().navigate(R.id.driverChooseProductFragment,bundle)
         }
+
+        root.driver_temporary_yakunlash_btn.setText("Yakunlash: $karobka_soni karobka")
         completeClick()
         onEditClick()
 
@@ -63,12 +66,14 @@ class DriverTemporaryFragment : Fragment() {
 
     private fun loadList() {
         myList.clear()
+        karobka_soni=0
         var allList: ArrayList<Temporary> =
             getMagnitDao?.getAllTemporary()!! as ArrayList<Temporary>
 
         for (i in 0 until allList.size) {
             if (allList[i].driverID == param1) {
                 myList.add(allList[i])
+                karobka_soni+=allList[i].numberReceived
             }
         }
     }
@@ -76,7 +81,7 @@ class DriverTemporaryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.title = "Haydovchi $param1"
+        (activity as AppCompatActivity).supportActionBar?.title = "Haydovchi $param1 | ${getCurrentDate()}"
     }
     private fun getCurrentDate(): String {
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
@@ -121,7 +126,7 @@ class DriverTemporaryFragment : Fragment() {
                         )
                         findNavController().popBackStack()
                         Toast.makeText(root.context, "Yakunlandi!", Toast.LENGTH_SHORT).show()
-                        getMagnitDao?.deleteAllTemporary()
+                        getMagnitDao?.deleteTemporaryByDriverID(param1!!)
                         loadList()
                         loadAdapter()
                     }

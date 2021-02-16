@@ -71,8 +71,16 @@ class DriverItemFragment : Fragment() {
 
             var berilganString = berilgan_tovarlar.toString().reversed()
             var olinganString = olingan_summa.toString().reversed()
-            berilganString = berilganString.substring(0, 6) + " " + berilganString.substring(6)
+            var farqString=farq.toString().reversed()
+            if (berilganString.length >= 6) {
+                berilganString = berilganString.substring(0, 6) + " " + berilganString.substring(6)
+            }
+            if (olinganString.length >= 6) {
             olinganString=olinganString.substring(0,6)+" "+olinganString.substring(6)
+            }
+            if (farqString.length >= 6) {
+                farqString=farqString.substring(0,6)+" "+farqString.substring(6)
+            }
 
 
             var myDialog = BottomSheetDialog(root.context,R.style.SheetDialog)
@@ -81,7 +89,7 @@ class DriverItemFragment : Fragment() {
             dialogView.given_cash.text = "Berilgan tovarlar: ${berilganString.reversed()}"
             dialogView.received_cash.text="Olingan summa: ${olinganString.reversed()}"
             dialogView.total_box.text="Jami karobka: $jami_karobka"
-            dialogView.farq.text="Farq: $farq"
+            dialogView.farq.text="Farq: ${farqString.reversed()}"
             myDialog.setContentView(dialogView)
             myDialog.show()
         }
