@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.annotation.IntegerRes
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.delete_prdct_item_dialog.view.*
-import kotlinx.android.synthetic.main.item_bottomsheet.view.*
 import kotlinx.android.synthetic.main.mahsulotlar.view.*
-import kotlinx.android.synthetic.main.product_item.view.*
 import uz.revolution.icecreammagnit.R
 import uz.revolution.icecreammagnit.database.AppDatabase
 import uz.revolution.icecreammagnit.mahsulotlar.adapters.ProductAdapter
@@ -38,10 +36,8 @@ class MahsulotlarFragment : Fragment() {
 
     fun loadData() {
         productList = ArrayList()
-
         productList = getMagnitDao?.getProductList()!!
         suppliertList = getMagnitDao.getAllSuppliers()
-
         productAdapter = ProductAdapter(productList, suppliertList)
     }
 
@@ -61,26 +57,35 @@ class MahsulotlarFragment : Fragment() {
         root.product_recycler_view.layoutManager = LinearLayoutManager(container?.context)
         loadmyStr()
         Log.d("TTTT", "onCreateView: $umumiy_qolgan_soni")
-        root.mahsulot_share_btn.setOnClickListener {
-            val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(
-                    Intent.EXTRA_TEXT,
-                    "Mahsulotlar | "+getCurrentDate()+"\n\n"+productsStr+"\n\nJami karobka soni: "+umumiy_qolgan_soni
-                )
-                type = "text/plain"
-            }
-            val shareIntent = Intent.createChooser(sendIntent, null)
-            startActivity(shareIntent)
-        }
+        onShareClick()
+
         loadSwipeFun()
 
         return root
     }
 
+    private fun onShareClick() {
+        root.mahsulot_share_btn.setOnClickListener {
+            if (productList.isNotEmpty()) {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "Mahsulotlar | " + getCurrentDate() + "\n\n" + productsStr + "\n\nJami karobka soni: " + umumiy_qolgan_soni
+                    )
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+            } else {
+                Toast.makeText(root.context, "Oldin ma'lumot kiriting!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun loadmyStr() {
         for (i in 0 until productList.size) {
-            productsStr +=productList[i].name+"   ->  "+productList[i].balance+"\n"
+            productsStr += productList[i].name + "   ->  " + productList[i].balance + "\n"
 
             umumiy_qolgan_soni += productList[i].balance
         }
@@ -109,6 +114,7 @@ class MahsulotlarFragment : Fragment() {
                 val view = layoutInflater.inflate(R.layout.delete_prdct_item_dialog, null, false)
                 val alertdialog = AlertDialog.Builder(root.context)
                 val dialog = alertdialog.create()
+                dialog.setCancelable(false)
                 dialog.setView(view)
 
                 view.delete_product_dialog_davom_etish_.setOnClickListener {
@@ -117,17 +123,20 @@ class MahsulotlarFragment : Fragment() {
                     productAdapter.onSwipe(pd)
                     getMagnitDao?.deleteProduct(product)
                     dialog.dismiss()
-                    Snackbar.make(root, "Mahsulot o'chirildi!", Snackbar.LENGTH_LONG)
-                        .setAction("Bekor qilish",
-                            object : View.OnClickListener {
-                                override fun onClick(v: View?) {
-                                    getMagnitDao?.insertProduct(product)
-                                    (productList as ArrayList).add(pd, product)
-                                    productAdapter.notifyItemInserted(pd)
-                                    productAdapter.notifyItemRangeChanged(pd, productList.size)
-                                }
+                    val snackbar = Snackbar.make(root, "Mahsulot o'chirildi!", Snackbar.LENGTH_LONG)
+                    snackbar.setAction("Bekor qilish",
+                        object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                getMagnitDao?.insertProduct(product)
+                                (productList as ArrayList).add(pd, product)
+                                productAdapter.notifyItemInserted(pd)
+                                productAdapter.notifyItemRangeChanged(pd, productList.size)
+                            }
 
-                            }).show()
+                        })
+                    val sView = snackbar.view
+                    sView.background = resources.getDrawable(R.drawable.btn_back)
+                    snackbar.show()
                 }
                 view.delete_product_dialog_bekor_qilish.setOnClickListener {
                     dialog.dismiss()
@@ -158,6 +167,7 @@ class MahsulotlarFragment : Fragment() {
         }
         return true
     }
+
     private fun getCurrentDate(): String {
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
         val currentDateAndTime: String = simpleDateFormat.format(Date())
