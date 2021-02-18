@@ -1,6 +1,7 @@
 package uz.revolution.icecreammagnit.mijozlar.dialogs
 
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,8 @@ class CustomerSetBoxDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         root = inflater.inflate(R.layout.fragment_customer_set_box_dialog, container, false)
+        root.set_box_et.filters+=InputFilter.LengthFilter(9)
+
         dialog?.requestWindowFeature(STYLE_NORMAL)
         isCancelable = false
         root.set_box_et.requestFocus()
